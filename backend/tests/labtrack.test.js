@@ -11,7 +11,7 @@ describe('LabTrack API Health Tests', () => {
 
   test('TC-2: Application name is correct', () => {
     const appName = 'LabTrack';
-    expect(appName).toBe('Fakelab');
+    expect(appName).toBe('LabTrack');
   });
 
   test('TC-3: Default admin email is valid format', () => {
