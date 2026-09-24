@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LabTrack â€” Tektronix MDO34</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+  <script src="js/angular-app.js?v=2"></script>
+</head>
+<body ng-app="labTrackApp" ng-controller="CatalogController">
+  <div class="app-layout">
+    <aside class="app-sidebar">
+      <a href="dashboard.html" class="sidebar-brand"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#006d77" stroke-width="2"><circle cx="12" cy="14" r="3"/><path d="M12 2v4M8 6h8"/></svg><div><strong>LabTrack</strong><small>Management System</small></div></a>
+      <nav><ul class="sidebar-nav">
+        <li><a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a></li>
+        <li><a href="equipment-catalog.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8"/></svg>Browse Equipment</a></li>
+        <li><a href="my-bookings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/></svg>My Bookings</a></li>
+        <li><a href="bundle-booking.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>Bundle Booking</a></li>
+        <li><a href="notifications.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg>Notifications</a></li>
+        <li><a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a></li>
+        <li><a href="settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg>Settings</a></li>
+        <li><a href="login.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/></svg>Logout</a></li>
+      </ul></nav>
+    </aside>
+    <div class="app-main">
+      <header class="app-topbar">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="equipment-catalog.html">&larr; Browse Equipment</a> &gt; <strong>{{ equipment.name }}</strong></nav>
+        <div class="topbar-actions"><button class="icon-btn" aria-label="Notifications"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg></button><img src="https://i.pravatar.cc/72?img=12" alt="Profile" style="width:36px;height:36px;border-radius:50%"></div>
+      </header>
+      <main class="app-content">
+        <div class="detail-layout">
+          <section>
+            <article class="card">
+              <figure style="margin:0;position:relative">
+                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800" alt="Tektronix MDO34 oscilloscope" style="width:100%;border-radius:12px;max-height:320px;object-fit:cover">
+                <figcaption><span class="badge badge-active" style="position:absolute;top:12px;right:12px">Available Now</span></figcaption>
+              </figure>
+              <header style="display:flex;justify-content:space-between;margin-top:1rem">
+                <div><h1 class="page-title" style="font-size:1.5rem;margin:0">{{ equipment.name }}</h1><p class="page-sub" style="margin:0">{{ equipment.description }}</p></div>
+                <div style="text-align:right"><strong style="color:#006d77">Lab B-12</strong><br><small>Electronics Wing</small></div>
+              </header>
+            </article>
+            <article class="card" style="margin-top:1rem">
+              <h2 style="margin:0 0 1rem">Technical Specifications</h2>
+              <div class="spec-grid">
+                <div class="spec-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#006d77" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg><strong>350 MHz</strong><br>Bandwidth</div>
+                <div class="spec-box"><strong>4</strong><br>Analog Channels</div>
+                <div class="spec-box"><strong>2.5 GS/s</strong><br>Sample Rate</div>
+                <div class="spec-box"><strong>10 Mpoints</strong><br>Record Length</div>
+              </div>
+              <p style="font-size:0.9rem;color:#6b7280;margin:0">Features an 11.6-inch HD display with intuitive touch interface for mixed-domain analysis of analog and digital signals.</p>
+            </article>
+          </section>
+          <aside class="card">
+            <h2 style="margin:0 0 1rem">Book Equipment</h2>
+            <form data-validate="booking" novalidate>
+              <div class="form-message"></div>
+              <div class="field-wrap">
+                <label for="bookingDate">Select Date</label>
+                <input type="date" id="bookingDate" name="bookingDate" ng-model="booking.date" required>
+                <span class="validation-thumb"></span>
+                <span class="field-error"></span>
+              </div>
+              <fieldset style="border:none;padding:0;margin:0 0 1rem">
+                <legend style="font-size:0.875rem;margin-bottom:0.5rem">Available Time Slots</legend>
+                <div class="time-slots">
+                  <label><input type="radio" name="timeSlot" value="09:00"><span>09:00 AM</span></label>
+                  <label><input type="radio" name="timeSlot" value="10:00"><span>10:00 AM</span></label>
+                  <label><input type="radio" name="timeSlot" value="11:00" checked><span>11:00 AM</span></label>
+                  <label><input type="radio" name="timeSlot" value="12:00"><span>12:00 PM</span></label>
+                  <label class="disabled"><input type="radio" name="timeSlot" value="13:00" disabled><span>01:00 PM</span></label>
+                  <label><input type="radio" name="timeSlot" value="14:00"><span>02:00 PM</span></label>
+                </div>
+              </fieldset>
+              <div class="field-wrap">
+                <label for="duration">Duration (Hours)</label>
+                <input type="number" id="duration" name="duration" ng-model="booking.duration" min="0.5" max="8" step="0.5" required>
+                <span class="validation-thumb"></span>
+                <span class="field-error"></span>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Confirm Booking</button>
+            </form>
+          </aside>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="js/validation.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+

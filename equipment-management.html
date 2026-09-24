@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LabTrack â€” Equipment Management</title>
+  <script src="js/auth.js"></script>
+  <script>LabTrackAuth.guardAdmin();</script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+  <script src="js/angular-app.js?v=2"></script>
+</head>
+<body ng-app="labTrackApp" ng-controller="EquipmentMgmtController">
+  <div class="app-layout">
+    <aside class="app-sidebar" aria-label="Admin navigation">
+      <a href="admin-dashboard.html" class="sidebar-brand"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#006d77" stroke-width="2"><circle cx="12" cy="14" r="3"/><path d="M12 2v4M8 6h8"/></svg><div><strong>LabTrack</strong><small>Management System</small></div></a>
+      <nav><ul class="sidebar-nav">
+        <li><a href="admin-dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a></li>
+        <li><a href="equipment-management.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>Browse Equipment</a></li>
+        <li><a href="booking-reports.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Reports</a></li>
+        <li><a href="maintenance.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Maintenance</a></li>
+        <li><a href="student-management.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Students</a></li>
+        <li style="margin-top:auto"><a href="login.html" onclick="LabTrackAuth.logout();return false;" style="color:#dc2626"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Logout</a></li>
+      </ul></nav>
+    </aside>
+    <div class="app-main">
+      <header class="app-topbar">
+        <form class="topbar-search" role="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input type="search" ng-model="searchQuery" placeholder="Search equipment..." aria-label="Search"></form>
+        <div class="topbar-actions">
+          <button type="button" class="icon-btn" aria-label="Notifications"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
+          <button type="button" class="icon-btn" aria-label="Settings"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2"/></svg></button>
+          <div class="user-chip"><img src="https://i.pravatar.cc/72?img=15" alt="Admin"><div><span data-auth-name>Arjun Kumar</span><small data-auth-role>Lab Administrator</small></div></div>
+        </div>
+      </header>
+      <main class="app-content">
+        <header style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem">
+          <div><h1 class="page-title">Equipment Inventory</h1><p class="page-sub">Manage and track all laboratory assets.</p></div>
+          <div style="display:flex;gap:0.5rem"><button class="btn btn-outline">Import CSV</button><button class="btn btn-primary" data-open-modal="addEquipModal">+ Add Equipment</button></div>
+        </header>
+        <section class="card">
+          <form style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:1rem;margin-bottom:1rem" aria-label="Filter inventory">
+            <div class="field-wrap"><label for="advSearch">Advanced Search</label><input type="search" id="advSearch" name="advSearch" ng-model="searchQuery" placeholder="Search by ID, Name, or Spec..." pattern="[A-Za-z0-9\s]+"><span class="validation-thumb"></span><span class="field-error"></span></div>
+            <div class="field-wrap"><label for="catFilter">Category</label><select id="catFilter" ng-model="filters.category"><option value="">All Categories</option><option>Microscopes</option><option>Centrifuges</option></select><span class="validation-thumb"></span><span class="field-error"></span></div>
+            <div class="field-wrap"><label for="statusFilter">Status</label><select id="statusFilter" ng-model="filters.status"><option value="">All Statuses</option><option>Available</option><option>In Use</option><option>Maintenance</option></select><span class="validation-thumb"></span><span class="field-error"></span></div>
+          </form>
+          <table class="data-table">
+            <thead><tr><th>ID</th><th>Equipment Name</th><th>Category</th><th>Total Units</th><th>Available</th><th>Status</th><th>Last Maintained</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td>EQ-001</td><td>Leica DMi8 Microscope</td><td>Microscopes</td><td>5</td><td>3</td><td><span class="badge badge-active">Available</span></td><td>Oct 12, 2023</td><td><a href="equipment-detail.html" class="btn btn-outline" style="padding:0.3rem 0.75rem;font-size:0.75rem">View</a></td></tr>
+              <tr><td>EQ-042</td><td>Beckman Coulter Centrifuge</td><td>Centrifuges</td><td>2</td><td>0</td><td><span class="badge" style="background:#fee2e2;color:#991b1b">In Use</span></td><td>Sep 05, 2023</td><td><a href="equipment-detail.html" class="btn btn-outline" style="padding:0.3rem 0.75rem;font-size:0.75rem">View</a></td></tr>
+              <tr><td>EQ-118</td><td>Thermo Fisher Spectrometer</td><td>Spectrometers</td><td>1</td><td>0</td><td><span class="badge badge-pending">Maintenance</span></td><td style="color:#dc2626">Nov 20, 2022 (Overdue)</td><td><a href="equipment-detail.html" class="btn btn-outline" style="padding:0.3rem 0.75rem;font-size:0.75rem">View</a></td></tr>
+              <tr ng-repeat="e in addedEquipment" ng-show="!searchQuery || e.name.toLowerCase().indexOf(searchQuery.toLowerCase())>-1">
+                <td>EQ-NEW</td>
+                <td>{{e.name}}</td>
+                <td>Electronics</td>
+                <td>1</td>
+                <td>1</td>
+                <td><span class="badge"
+                  ng-style="(e.status || 'Available')==='Available' ? {background:'#d1fae5',color:'#065f46'} :
+                             (e.status)==='Maintenance' ? {background:'#fef9c3',color:'#854d0e'} :
+                             {background:'#fee2e2',color:'#991b1b'}">{{e.status || 'Available'}}</span></td>
+                <td>Just Added</td>
+                <td><button type="button" class="btn btn-outline" style="padding:0.3rem 0.75rem;font-size:0.75rem;color:#dc2626;border-color:#fca5a5" ng-click="submitMsg='Removed.'">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <footer style="display:flex;justify-content:space-between;align-items:center;margin-top:1rem;font-size:0.85rem;color:#6b7280">
+            <span>Showing 1 to 3 of 124 entries</span>
+            <nav class="pagination" aria-label="Table pagination"><a href="#">&lsaquo;</a><span class="current">1</span><a href="#">2</a><a href="#">3</a><a href="#">&rsaquo;</a></nav>
+          </footer>
+        </section>
+      </main>
+    </div>
+  </div>
+  <div class="modal-overlay" id="addEquipModal" role="dialog" aria-modal="true">
+    <div class="modal">
+      <h2>Add Equipment</h2>
+      <div ng-if="submitMsg" style="background:#d1fae5;color:#065f46;padding:0.75rem 1rem;border-radius:8px;margin-bottom:1rem;">âœ“ {{submitMsg}}</div>
+      <form novalidate ng-submit="submitAddEquipment()">
+        <div class="field-wrap"><label for="eqName">Equipment Name</label><input type="text" id="eqName" name="equipmentName" ng-model="newEquipment.name" required placeholder="e.g. Leica Microscope"><span class="validation-thumb"></span><span class="field-error"></span></div>
+        <div class="field-wrap"><label for="eqBy">Added By</label><input type="text" id="eqBy" name="reportedBy" ng-model="newEquipment.addedBy" required placeholder="e.g. Dr. Smith"><span class="validation-thumb"></span><span class="field-error"></span></div>
+        <div class="field-wrap"><label for="eqLoc">Lab Location</label><input type="text" id="eqLoc" name="damageLocation" ng-model="newEquipment.location" required placeholder="e.g. Lab 3B"><span class="validation-thumb"></span><span class="field-error"></span></div>
+        <div style="display:flex;gap:0.5rem;margin-top:1rem"><button type="submit" class="btn btn-primary">Add Equipment</button><button type="button" class="btn btn-outline" data-close-modal>Cancel</button></div>
+      </form>
+    </div>
+  </div>
+  <script src="js/auth.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/app.js"></script>
+  <script>LabTrackAuth.hydratePage();</script>
+</body>
+</html>
+

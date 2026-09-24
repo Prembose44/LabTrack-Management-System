@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LabTrack â€” Equipment Catalog</title>
+  <script src="js/auth.js"></script>
+  <script>LabTrackAuth.guardStudent();</script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+  <script src="js/angular-app.js?v=2"></script>
+</head>
+<body ng-app="labTrackApp" ng-controller="CatalogController">
+  <div class="app-layout">
+    <aside class="app-sidebar">
+      <a href="dashboard.html" class="sidebar-brand"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#006d77" stroke-width="2"><circle cx="12" cy="14" r="3"/><path d="M12 2v4M8 6h8"/></svg><div><strong>LabTrack</strong><small>Management System</small></div></a>
+      <nav><ul class="sidebar-nav">
+        <li><a href="student-dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a></li>
+        <li><a href="equipment-catalog.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8"/></svg>Browse Equipment</a></li>
+        <li><a href="my-bookings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/></svg>My Bookings</a></li>
+        <li><a href="bundle-booking.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>Bundle Booking</a></li>
+        <li><a href="notifications.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg>Notifications</a></li>
+        <li><a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a></li>
+        <li><a href="settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg>Settings</a></li>
+        <li><a href="login.html" onclick="LabTrackAuth.logout();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/></svg>Logout</a></li>
+      </ul></nav>
+    </aside>
+    <div class="app-main">
+      <header class="app-topbar">
+        <form class="topbar-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/></svg><input type="search" ng-model="searchQuery" placeholder="Search equipment..." aria-label="Search equipment"></form>
+        <div class="topbar-actions"><button class="icon-btn" aria-label="Notifications"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg><span class="dot"></span></button><div class="user-chip"><img src="https://i.pravatar.cc/72?img=12" alt=""><div><span data-auth-name>Arjun Kumar</span><small data-auth-role>Student</small></div></div></div>
+      </header>
+      <main class="app-content">
+        <header><h1 class="page-title">Equipment Catalog</h1><p class="page-sub">Browse and book available laboratory equipment.</p></header>
+        <div class="catalog-layout">
+          <aside class="card">
+            <header style="display:flex;justify-content:space-between;margin-bottom:1rem"><strong>Filters</strong><a href="#">Reset</a></header>
+            <form aria-label="Equipment filters">
+              <div class="field-wrap"><label for="cat">Category</label><select id="cat" name="category" ng-model="filters.category" required><option value="">All</option><option value="electronics">Electronics</option><option value="microscope">Microscopes</option></select><span class="validation-thumb"></span><span class="field-error"></span></div>
+              <div class="field-wrap"><label for="dept">Department</label><select id="dept" name="department" ng-model="filters.department"><option value="">All</option><option value="cs">Computer Science</option><option value="ece">Electronics</option></select><span class="validation-thumb"></span><span class="field-error"></span></div>
+              <div class="field-wrap"><label for="avail">Availability</label><select id="avail" name="availability" ng-model="filters.availability"><option value="">Any</option><option value="available">Available</option></select><span class="validation-thumb"></span><span class="field-error"></span></div>
+              <div class="field-wrap"><label for="cond">Condition</label><select id="cond" name="condition"><option value="">Any</option><option value="good">Good</option></select><span class="validation-thumb"></span><span class="field-error"></span></div>
+              <button type="submit" class="btn btn-primary btn-block">Apply Filters</button>
+            </form>
+          </aside>
+          <section>
+            <header style="display:flex;justify-content:space-between;margin-bottom:1rem;font-size:0.9rem"><span>Showing 24 items</span><span>Sort by: <strong>Newest</strong></span></header>
+            <div class="equipment-grid">
+              <div class="card equip-card" style="overflow:hidden;cursor:pointer"
+                ng-repeat="item in equipmentList | filter:searchQuery | filter:(filters.category ? {category: filters.category} : undefined)">
+                <img ng-src="{{item.image}}" alt="{{item.name}}"
+                  style="width:100%;height:160px;object-fit:cover;display:block"
+                  onerror="this.src='https://via.placeholder.com/400x160?text=Equipment'">
+                <div style="padding:1rem">
+                  <span style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#006d77"
+                    ng-bind="item.categoryDisplay || item.category"></span>
+                  <h3 style="margin:0.25rem 0 0.5rem;font-size:1rem" ng-bind="item.name"></h3>
+                  <p style="margin:0;font-size:0.82rem;color:#6b7280" ng-bind="item.description"></p>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.75rem">
+                    <span style="font-size:0.8rem;color:#374151">Available: <strong>{{item.available}}/{{item.total}}</strong></span>
+                    <button class="btn btn-primary" style="padding:0.35rem 0.9rem;font-size:0.8rem"
+                      ng-click="bookItem(item)" ng-disabled="item.available===0">
+                      {{item.available > 0 ? 'Book Now' : 'Unavailable'}}
+                    </button>
+                  </div>
+                  <p ng-if="item._booked" style="margin:0.5rem 0 0;font-size:0.8rem;color:#059669">Booking request submitted! Check <a href="my-bookings.html">My Bookings</a>.</p>
+                </div>
+              </div>
+            </div>
+            <nav class="pagination" aria-label="Pagination"><a href="#">&lsaquo;</a><span class="current">1</span><a href="#">2</a><a href="#">3</a><a href="#">&rsaquo;</a></nav>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="js/auth.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/app.js"></script>
+  <script>LabTrackAuth.hydratePage();</script>
+</body>
+</html>
+

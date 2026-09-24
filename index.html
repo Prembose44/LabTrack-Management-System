@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LabTrack â€” Borrow Smart. Lab Harder.</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/forms.css">
+</head>
+<body class="landing-body">
+  <header class="landing-header">
+    <a href="index.html" class="logo-link" aria-label="LabTrack home">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="12" cy="14" r="3"/><path d="M12 2v4M8 6h8M6 10l-2 8h16l-2-8"/>
+      </svg>
+      LabTrack
+    </a>
+    <nav aria-label="Primary">
+      <ul class="landing-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#about">About Us</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-outline" href="login.html">Login</a>
+      <a class="btn btn-primary" href="register.html">Register</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">Borrow Smart.<br><span class="accent">Lab Harder.</span></h1>
+      <p>Smart equipment booking for smarter learning. Streamline your lab experience with our intuitive management system.</p>
+      <form class="search-hero" data-validate="landing-search" novalidate>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <div class="field-wrap" style="flex:1;margin:0">
+          <input type="search" name="searchQuery" placeholder="Search equipment, labs, bookings..." required pattern="[A-Za-z0-9\s]+" aria-label="Search equipment">
+          <span class="validation-thumb" aria-hidden="true"></span>
+          <span class="field-error"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+    </section>
+
+    <section class="stats-row" id="features" aria-label="Platform statistics">
+      <article class="stat-card"><strong>800+</strong><span>EQUIPMENT</span></article>
+      <article class="stat-card"><strong>2500+</strong><span>BOOKINGS</span></article>
+      <article class="stat-card"><strong>20+</strong><span>DEPARTMENTS</span></article>
+      <article class="stat-card"><strong>98%</strong><span>ON-TIME RETURNS</span></article>
+    </section>
+
+    <figure class="landing-media">
+      <video controls muted poster="LabTrack - Landing Page.png" width="720" aria-label="LabTrack overview">
+        <source src="" type="video/mp4">
+        <img src="LabTrack - Landing Page.png" alt="LabTrack platform preview">
+      </video>
+      <figcaption style="text-align:center;font-size:0.8rem;color:#6b7280;margin-top:0.5rem">Lab equipment management preview â€” today: <time data-current-date></time></figcaption>
+    </figure>
+
+    <section class="section-how" id="how-it-works" aria-labelledby="how-title">
+      <h2 id="how-title">How It Works</h2>
+      <div class="steps-grid">
+        <article class="step-card">
+          <div class="step-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+          </div>
+          <h3>Register</h3>
+          <p>Create your account as a student or admin securely.</p>
+          <a class="btn btn-outline" href="register.html">Get Started</a>
+        </article>
+        <article class="step-card">
+          <div class="step-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </div>
+          <h3>Browse</h3>
+          <p>Explore available equipment across departments in real-time.</p>
+          <a class="btn btn-outline" href="equipment-catalog.html">Browse</a>
+        </article>
+        <article class="step-card">
+          <div class="step-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h3>Book</h3>
+          <p>Choose a time slot and confirm booking instantly.</p>
+          <a class="btn btn-primary" href="login.html">Book Now</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="section-how" aria-labelledby="about-title">
+      <h2 id="about-title">About LabTrack</h2>
+      <p style="text-align:center;max-width:640px;margin:0 auto;color:#6b7280">LabTrack connects students, researchers, and administrators with shared laboratory assets â€” from microscopes to oscilloscopes â€” with transparent availability and maintenance tracking.</p>
+    </section>
+  </main>
+
+  <footer class="landing-footer">
+    <p>&copy; <span id="year"></span> LabTrack Management System. All rights reserved.</p>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script src="js/validation.js"></script>
+</body>
+</html>

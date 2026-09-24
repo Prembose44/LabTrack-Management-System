@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LabTrack â€” Admin Dashboard</title>
+  <script src="js/auth.js"></script>
+  <script>LabTrackAuth.guardAdmin();</script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+  <script src="js/angular-app.js?v=2"></script>
+</head>
+<body ng-app="labTrackApp" ng-controller="AdminDashboardController">
+  <div class="app-layout">
+    <!-- â”€â”€ Admin Sidebar â”€â”€ -->
+    <aside class="app-sidebar" aria-label="Admin navigation">
+      <a href="admin-dashboard.html" class="sidebar-brand">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#006d77" stroke-width="2"><circle cx="12" cy="14" r="3"/><path d="M12 2v4M8 6h8"/></svg>
+        <div><strong>LabTrack</strong><small>Management System</small></div>
+      </a>
+      <nav>
+        <ul class="sidebar-nav">
+          <li><a href="admin-dashboard.html" class="active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Dashboard</a></li>
+          <li><a href="equipment-management.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            Browse Equipment</a></li>
+          <li><a href="booking-reports.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            Reports</a></li>
+          <li><a href="maintenance.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            Maintenance</a></li>
+          <li><a href="student-management.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Students</a></li>
+          <li style="margin-top:auto">
+            <a href="login.html" onclick="LabTrackAuth.logout();return false;" style="color:#dc2626">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <div class="app-main">
+      <!-- â”€â”€ Topbar â”€â”€ -->
+      <header class="app-topbar">
+        <form class="topbar-search" role="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="search" placeholder="Search equipment, bookings..." aria-label="Search">
+        </form>
+        <div class="topbar-actions">
+          <button type="button" class="icon-btn" aria-label="Notifications">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="dot"></span>
+          </button>
+          <button type="button" class="icon-btn" aria-label="Settings">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </button>
+          <div class="user-chip">
+            <img src="https://i.pravatar.cc/72?img=15" alt="Admin avatar">
+            <div><span data-auth-name>Arjun Kumar</span><small data-auth-role>Lab Administrator</small></div>
+          </div>
+        </div>
+      </header>
+
+      <!-- â”€â”€ Content â”€â”€ -->
+      <main class="app-content">
+        <header style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem">
+          <div>
+            <h1 class="page-title">Admin Overview</h1>
+            <p class="page-sub" style="margin-bottom:0">Monitor laboratory operations and equipment utilization.</p>
+          </div>
+          <a class="btn btn-primary" href="equipment-management.html">+ New Equipment</a>
+        </header>
+
+        <!-- Stats -->
+        <section class="stats-grid-4" aria-label="Admin statistics">
+          <article class="card mini-stat">
+            <div class="mini-stat-icon" style="background:#dbeafe;color:#2563eb">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/></svg>
+            </div>
+            <div>
+              <strong style="font-size:1.5rem" ng-bind="stats.totalEquipment">1,248</strong>
+              <span style="color:#10b981;font-size:0.8rem"> +12%</span>
+              <div style="font-size:0.8rem;color:#6b7280">Total Equipment</div>
+            </div>
+          </article>
+          <article class="card mini-stat">
+            <div class="mini-stat-icon" style="background:#d1fae5;color:#059669">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>
+            </div>
+            <div>
+              <strong style="font-size:1.5rem" ng-bind="stats.activeBookings">342</strong>
+              <span style="color:#10b981;font-size:0.8rem"> +5%</span>
+              <div style="font-size:0.8rem;color:#6b7280">Active Bookings</div>
+            </div>
+          </article>
+          <article class="card mini-stat">
+            <div class="mini-stat-icon" style="background:#fee2e2;color:#dc2626">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <div>
+              <strong style="font-size:1.5rem;color:#dc2626" ng-bind="stats.pendingApprovals">18</strong>
+              <span style="color:#dc2626;font-size:0.8rem"> +2</span>
+              <div style="font-size:0.8rem;color:#6b7280">Overdue Returns</div>
+            </div>
+          </article>
+          <article class="card mini-stat">
+            <div class="mini-stat-icon" style="background:#fef3c7;color:#d97706">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <div>
+              <strong style="font-size:1.5rem">7</strong>
+              <div style="font-size:0.8rem;color:#6b7280">Damaged Items</div>
+              <div style="font-size:0.75rem;color:#9ca3af">Requires attention</div>
+            </div>
+          </article>
+        </section>
+
+        <!-- Charts row -->
+        <div class="dashboard-grid">
+          <section class="card" aria-labelledby="dept-chart-title">
+            <header style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+              <div>
+                <h2 id="dept-chart-title" style="margin:0;font-size:1.1rem">Department Usage</h2>
+                <small style="color:#6b7280">Monthly breakdown</small>
+              </div>
+              <button class="pill active" type="button">Last 30 Days</button>
+            </header>
+            <canvas id="adminDeptChart" class="chart" aria-label="Department usage bar chart" role="img"></canvas>
+          </section>
+
+          <aside>
+            <section class="card" style="margin-bottom:1rem">
+              <h3 style="margin:0 0 0.75rem;font-size:0.95rem">Quick Actions</h3>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem">
+                <button class="btn btn-outline" style="font-size:0.8rem">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                  Scan Item
+                </button>
+                <button class="btn btn-outline" style="font-size:0.8rem" data-open-modal="approveModal">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  Approve
+                </button>
+                <a href="booking-reports.html" class="btn btn-outline" style="font-size:0.8rem;text-align:center">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+                  Reports
+                </a>
+                <button class="btn btn-outline" style="font-size:0.8rem" data-open-modal="issueModal">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  Issue
+                </button>
+              </div>
+            </section>
+
+            <section class="card">
+              <h3 style="margin:0 0 0.75rem;font-size:0.95rem">Utilization</h3>
+              <div class="progress-row">
+                <header><span>Microscopes</span><span>92%</span></header>
+                <div class="progress-bar"><span style="width:92%"></span></div>
+              </div>
+              <div class="progress-row">
+                <header><span>Centrifuges</span><span>78%</span></header>
+                <div class="progress-bar"><span style="width:78%;background:#2a9d8f"></span></div>
+              </div>
+              <div class="progress-row">
+                <header><span>Spectrometers</span><span>45%</span></header>
+                <div class="progress-bar"><span style="width:45%;background:#3b82f6"></span></div>
+              </div>
+              <div class="progress-row">
+                <header><span>Incubators</span><span>88%</span></header>
+                <div class="progress-bar"><span style="width:88%;background:#83c5be"></span></div>
+              </div>
+            </section>
+          </aside>
+        </div>
+
+        <!-- Student Directory quick view -->
+        <section class="card" style="margin-top:1.25rem">
+          <header style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+            <h2 style="margin:0;font-size:1.1rem">Recent Students</h2>
+            <a href="student-management.html" style="font-size:0.875rem">View All &rarr;</a>
+          </header>
+          <table class="data-table">
+            <thead>
+              <tr><th>Name</th><th>Department</th><th>Active Bookings</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:0.5rem"><img src="https://i.pravatar.cc/40?img=47" style="width:28px;height:28px;border-radius:50%;object-fit:cover" alt="">Sarah Jenkins</div></td>
+                <td>Mechanical Eng.</td><td>2</td>
+                <td><span class="badge badge-active">Clear</span></td>
+                <td><a href="#">View</a></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:0.5rem"><span style="width:28px;height:28px;border-radius:50%;background:#dbeafe;color:#1d4ed8;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700">MC</span>Marcus Chen</div></td>
+                <td>Biotechnology</td><td>1</td>
+                <td><span class="badge" style="background:#fee2e2;color:#991b1b">Restricted</span></td>
+                <td><a href="#">View</a></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:0.5rem"><img src="https://i.pravatar.cc/40?img=12" style="width:28px;height:28px;border-radius:50%;object-fit:cover" alt="">David Okafor</div></td>
+                <td>Chemistry</td><td>3</td>
+                <td><span class="badge badge-pending">Warning</span></td>
+                <td><a href="#">View</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Pending Booking Requests from Students -->
+        <section class="card" style="margin-top:1.25rem">
+          <header style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+            <h2 style="margin:0;font-size:1.1rem">Pending Student Booking Requests</h2>
+            <span class="badge badge-pending">{{pendingRequests.length}} pending</span>
+          </header>
+          <p ng-if="pendingRequests.length===0" style="color:#6b7280;text-align:center;padding:1rem;">No pending requests at the moment.</p>
+          <table class="data-table" ng-if="pendingRequests.length>0">
+            <thead><tr><th>Equipment</th><th>Booked On</th><th>Return By</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr ng-repeat="req in pendingRequests">
+                <td style="font-weight:600">{{req.name}}</td>
+                <td>{{req.bookedOn}}</td>
+                <td>{{req.returnBy}}</td>
+                <td><span class="badge" style="background:#fef9c3;color:#854d0e">{{req.status}}</span></td>
+                <td>
+                  <div style="display:flex;gap:0.5rem">
+                    <button type="button" class="btn btn-primary" style="padding:0.3rem 0.75rem;font-size:0.75rem" ng-click="approveRequest(req)">Approve</button>
+                    <button type="button" class="btn btn-outline" style="padding:0.3rem 0.75rem;font-size:0.75rem;border-color:#dc2626;color:#dc2626" ng-click="rejectRequest(req)">Reject</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Approve Modal -->
+  <div class="modal-overlay" id="approveModal" role="dialog" aria-modal="true" aria-labelledby="approve-title">
+    <div class="modal">
+      <h2 id="approve-title">Approve Booking Request</h2>
+      <form data-validate="damage-report" novalidate>
+        <div class="form-message"></div>
+        <div class="field-wrap"><label for="appStudent">Student Name</label><input type="text" id="appStudent" name="equipmentName" required pattern="[A-Za-z\s]+"><span class="validation-thumb"></span><span class="field-error"></span></div>
+        <div class="field-wrap"><label for="appEquip">Equipment</label><input type="text" id="appEquip" name="reportedBy" required pattern="[A-Za-z\s]+"><span class="validation-thumb"></span><span class="field-error"></span></div>
+        <div style="display:flex;gap:0.5rem;margin-top:1rem">
+          <button type="submit" class="btn btn-primary">Approve</button>
+          <button type="button" class="btn btn-outline" data-close-modal>Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Issue Modal -->
+  <div class="modal-overlay" id="issueModal" role="dialog" aria-modal="true" aria-labelledby="issue-title">
+    <div class="modal">
+      <h2 id="issue-title">Issue Equipment</h2>
+      <form data-validate="damage-report" novalidate>
+        <div class="form-message"></div>
+        <div class="field-wrap"><label for="issEquip">Equipment Name</label><input type="text" id="issEquip" name="equipmentName" required pattern="[A-Za-z\s]+"><span class="validation-thumb"></span><span class="field-error"></span></div>
+        <div class="field-wrap"><label for="issTo">Issue To (Student)</label><input type="text" id="issTo" name="reportedBy" required pattern="[A-Za-z\s]+"><span class="validation-thumb"></span><span class="field-error"></span></div>
+        <div class="field-wrap"><label for="issLoc">Lab Location</label><input type="text" id="issLoc" name="damageLocation" required pattern="[A-Za-z\s]+"><span class="validation-thumb"></span><span class="field-error"></span></div>
+        <div style="display:flex;gap:0.5rem;margin-top:1rem">
+          <button type="submit" class="btn btn-primary">Issue</button>
+          <button type="button" class="btn btn-outline" data-close-modal>Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/app.js"></script>
+  <script>LabTrackAuth.hydratePage();</script>
+</body>
+</html>
+

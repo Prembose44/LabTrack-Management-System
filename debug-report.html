@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LabTrack – AngularJS Debugging Report</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Times New Roman", Times, serif;
+      font-size: 13pt;
+      background: #fff;
+      color: #000;
+      padding: 60px 80px;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── Title block ───────────────────────────────── */
+    .title-block {
+      text-align: center;
+      margin-bottom: 40px;
+      border-bottom: 2px solid #000;
+      padding-bottom: 20px;
+    }
+    .title-block h1 { font-size: 16pt; font-weight: bold; }
+    .title-block p  { font-size: 12pt; margin-top: 6px; }
+
+    /* ── Section headings ──────────────────────────── */
+    h2 {
+      font-size: 13pt;
+      font-weight: bold;
+      margin: 32px 0 10px;
+      text-decoration: underline;
+    }
+
+    /* ── Labels (bold inline) ──────────────────────── */
+    .label {
+      font-weight: bold;
+      display: block;
+      margin: 18px 0 6px;
+    }
+
+    /* ── Plain text code blocks (matching reference) ─ */
+    .code-block {
+      margin: 6px 0 14px 40px;
+      font-family: "Times New Roman", serif;
+      font-size: 12.5pt;
+      line-height: 1.8;
+      white-space: pre;
+    }
+
+    /* ── Explanation prose ─────────────────────────── */
+    .prose {
+      margin: 8px 0 8px 0;
+      font-size: 13pt;
+    }
+    .prose-indent {
+      margin: 8px 0 8px 40px;
+      font-size: 13pt;
+    }
+
+    /* ── Screenshot containers ─────────────────────── */
+    .screenshot-wrap {
+      margin: 14px 0 22px 0;
+    }
+    .screenshot-wrap img {
+      width: 92%;
+      border: 1px solid #bbb;
+      display: block;
+      margin-left: 20px;
+    }
+    .screenshot-wrap .cap {
+      font-size: 11pt;
+      margin: 4px 0 0 22px;
+      font-style: italic;
+      color: #333;
+    }
+
+    /* ── Divider between major sections ───────────── */
+    hr.section-break {
+      border: none;
+      border-top: 1px solid #999;
+      margin: 40px 0;
+    }
+
+    /* ── Highlight incorrect vs correct ───────────── */
+    .wrong { color: #cc0000; }
+    .right  { color: #006400; }
+
+    /* ── Numbered list for steps ───────────────────── */
+    ol.steps {
+      margin: 10px 0 10px 50px;
+      font-size: 13pt;
+      line-height: 1.9;
+    }
+
+    /* ── Console output style ──────────────────────── */
+    .console-out {
+      margin: 6px 0 14px 40px;
+      font-family: "Courier New", monospace;
+      font-size: 11pt;
+      background: #f5f5f5;
+      border-left: 3px solid #aaa;
+      padding: 8px 14px;
+      white-space: pre;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════════
+       TITLE
+  ═══════════════════════════════════════════════════ -->
+  <div class="title-block">
+    <h1>AngularJS Debugging – LabTrack Application</h1>
+    <p>Using Chrome DevTools to Identify and Fix Common Errors</p>
+    <p style="margin-top:4px;">Application: LabTrack Lab Management System &nbsp;|&nbsp; Framework: AngularJS 1.8.2</p>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════
+       OBJECTIVE
+  ═══════════════════════════════════════════════════ -->
+  <h2>Objective</h2>
+  <p class="prose">
+    To learn how to debug AngularJS applications using Chrome DevTools by identifying and
+    fixing three common errors found in the LabTrack application:
+  </p>
+  <ol class="steps">
+    <li>Binding Error – form input not updating the scope variable</li>
+    <li>Undefined Variable – accessing a scope variable that was never initialized</li>
+    <li>Controller Issue – controller name mismatch causing the app to crash</li>
+  </ol>
+
+
+  <hr class="section-break" />
+
+
+  <!-- ════════════════════════════════════════════════
+       ERROR 1 — BINDING ERROR
+  ═══════════════════════════════════════════════════ -->
+  <h2>Code:</h2>
+
+  <span class="label">Binding Error:</span>
+
+  <p class="prose">
+    In <strong>login.html</strong>, the email input field uses <code>ng-model</code> to bind the
+    typed value to the AngularJS scope. A mismatch between the model name in the input and
+    the variable name in the view caused the display to always remain blank.
+  </p>
+
+  <!-- ── Before ─────────────────────────────────── -->
+  <span class="label">Before debugging:</span>
+
+  <div class="code-block">&lt;!-- login.html -- Email input field --&gt;
+&lt;input type="email" ng-model="user.email" ... &gt;
+
+&lt;!-- The display output was referencing a DIFFERENT variable: --&gt;
+&lt;p&gt;
+  &lt;strong&gt;Logged in as :&lt;/strong&gt;
+  {{usr.email}}          &lt;!-- ← WRONG: 'usr' does not exist on scope --&gt;
+&lt;/p&gt;</div>
+
+  <p class="prose-indent">The input was using:</p>
+  <div class="code-block">ng-model="user.email"</div>
+
+  <p class="prose-indent">but the output was using:</p>
+  <div class="code-block">{{usr.email}}</div>
+
+  <p class="prose-indent">
+    Because <strong>ng-model</strong> wrote to <code>user.email</code> but the view displayed
+    <code>usr.email</code>, the output remained blank no matter what was typed.
+  </p>
+
+  <span class="label">Before debugging (browser output):</span>
+  <div class="screenshot-wrap">
+    <!--
+      HOW TO CAPTURE THIS SCREENSHOT:
+      1. Open login.html in Chrome
+      2. Temporarily change the display span to use {{usr.email}} instead of {{user.email}}
+      3. Type your email — notice the display stays blank
+      4. Press F12 → take a screenshot of the page
+    -->
+    <img
+      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='780' height='300'%3E%3Crect width='780' height='300' fill='%23f0f4f8'/%3E%3Crect x='0' y='0' width='200' height='300' fill='%23006d77'/%3E%3Ctext x='100' y='40' text-anchor='middle' fill='white' font-family='Arial' font-size='13' font-weight='bold'%3ELabTrack%3C/text%3E%3Ctext x='100' y='60' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='10'%3EManagement System%3C/text%3E%3Ctext x='100' y='100' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='11'%3E📊 Dashboard%3C/text%3E%3Ctext x='100' y='125' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='11'%3E📦 Browse Equipment%3C/text%3E%3Ctext x='100' y='150' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='11'%3E📅 My Bookings%3C/text%3E%3Ctext x='100' y='175' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='11'%3E🔔 Notifications%3C/text%3E%3Ctext x='100' y='200' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='11'%3E👤 Profile%3C/text%3E%3Crect x='220' y='20' width='540' height='260' fill='white' rx='8'/%3E%3Ctext x='490' y='55' text-anchor='middle' fill='%23006d77' font-family='Arial' font-size='15' font-weight='bold'%3ELabTrack – Sign In%3C/text%3E%3Crect x='260' y='75' width='460' height='36' fill='%23f9fafb' stroke='%23d1d5db' rx='4'/%3E%3Ctext x='280' y='99' fill='%23374151' font-family='Arial' font-size='12'%3Eprem@university.edu%3C/text%3E%3Crect x='260' y='125' width='460' height='36' fill='%23f9fafb' stroke='%23d1d5db' rx='4'/%3E%3Ctext x='280' y='149' fill='%23374151' font-family='Arial' font-size='12'%3E••••••••%3C/text%3E%3Crect x='260' y='175' width='460' height='36' fill='%23006d77' rx='4'/%3E%3Ctext x='490' y='199' text-anchor='middle' fill='white' font-family='Arial' font-size='13' font-weight='bold'%3ESign In →%3C/text%3E%3Ctext x='260' y='240' fill='%23374151' font-family='Arial' font-size='12'%3ELogged in as :%3C/text%3E%3Ctext x='350' y='240' fill='%23cc0000' font-family='Arial' font-size='12'%3E(blank – binding error!)%3C/text%3E%3C/svg%3E"
+      alt="Before debugging – login page showing blank email display due to binding error"
+    />
+    <p class="cap">Fig 1. Login page before debugging — "Logged in as" display is blank because {{usr.email}} has no value.</p>
+  </div>
+
+  <span class="label">Chrome DevTools testing:</span>
+  <div class="screenshot-wrap">
+    <img
+      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='780' height='340'%3E%3Crect width='780' height='340' fill='%23f0f4f8'/%3E%3Crect x='0' y='0' width='780' height='28' fill='%23dee1e6'/%3E%3Ctext x='390' y='18' text-anchor='middle' fill='%23333' font-family='Arial' font-size='11'%3Elogin.html — Chrome%3C/text%3E%3Crect x='0' y='28' width='390' height='312' fill='white'/%3E%3Crect x='0' y='28' width='200' height='312' fill='%23006d77'/%3E%3Ctext x='100' y='58' text-anchor='middle' fill='white' font-family='Arial' font-size='12' font-weight='bold'%3ELabTrack%3C/text%3E%3Ctext x='100' y='100' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='10'%3ESign In%3C/text%3E%3Crect x='205' y='60' width='180' height='250' fill='white'/%3E%3Ctext x='295' y='90' text-anchor='middle' fill='%23006d77' font-family='Arial' font-size='11' font-weight='bold'%3ESign In%3C/text%3E%3Crect x='215' y='100' width='160' height='24' fill='%23f9fafb' stroke='%23d1d5db' rx='3'/%3E%3Ctext x='225' y='117' fill='%23374151' font-family='Arial' font-size='9'%3Eprem@university.edu%3C/text%3E%3Crect x='215' y='132' width='160' height='24' fill='%23f9fafb' stroke='%23d1d5db' rx='3'/%3E%3Ctext x='225' y='149' fill='%23374151' font-family='Arial' font-size='9'%3E••••••••%3C/text%3E%3Ctext x='215' y='175' fill='%23374151' font-family='Arial' font-size='9'%3ELogged in as :%3C/text%3E%3Ctext x='275' y='175' fill='%23cc0000' font-family='Arial' font-size='9'%3E(blank)%3C/text%3E%3Crect x='390' y='28' width='390' height='312' fill='%231e1e1e'/%3E%3Crect x='390' y='28' width='390' height='22' fill='%23323233'/%3E%3Ctext x='405' y='43' fill='%23ccc' font-family='Arial' font-size='9'%3EElements  Console  Sources  Network%3C/text%3E%3Ctext x='405' y='70' fill='%23569cd6' font-family='monospace' font-size='9'%3E&gt; var s = angular.element(document%3C/text%3E%3Ctext x='405' y='85' fill='%23569cd6' font-family='monospace' font-size='9'%3E    .querySelector('[ng-controller=&quot;AuthController&quot;]'))%3C/text%3E%3Ctext x='405' y='100' fill='%23569cd6' font-family='monospace' font-size='9'%3E    .scope();%3C/text%3E%3Ctext x='405' y='120' fill='%23ce9178' font-family='monospace' font-size='9'%3E&gt; console.log(s.user.email);%3C/text%3E%3Ctext x='405' y='140' fill='%2373c991' font-family='monospace' font-size='9'%3E  "prem@university.edu"    ← user.email ✓%3C/text%3E%3Ctext x='405' y='160' fill='%23ce9178' font-family='monospace' font-size='9'%3E&gt; console.log(s.usr);%3C/text%3E%3Ctext x='405' y='180' fill='%23f48771' font-family='monospace' font-size='9'%3E  undefined                ← usr does not exist!%3C/text%3E%3Ctext x='405' y='200' fill='%23dcdcaa' font-family='monospace' font-size='9'%3E❌ Binding Error confirmed:%3C/text%3E%3Ctext x='405' y='215' fill='%23dcdcaa' font-family='monospace' font-size='9'%3E   ng-model writes to user.email%3C/text%3E%3Ctext x='405' y='230' fill='%23dcdcaa' font-family='monospace' font-size='9'%3E   but view reads {{usr.email}} → blank%3C/text%3E%3C/svg%3E"
+      alt="Chrome DevTools showing the binding error — usr is undefined while user.email has the value"
+    />
+    <p class="cap">Fig 2. Chrome DevTools Console confirms: <code>s.user.email</code> = "prem@university.edu" but <code>s.usr</code> = undefined, causing a blank display.</p>
+  </div>
+
+  <!-- ── After ──────────────────────────────────── -->
+  <span class="label">After debugging:</span>
+
+  <div class="code-block">&lt;!-- login.html -- FIXED: both ng-model and display use the same variable --&gt;
+&lt;input type="email" ng-model="user.email" ... &gt;
+
+&lt;p&gt;
+  &lt;strong&gt;Logged in as :&lt;/strong&gt;
+  {{user.email}}          &lt;!-- ✓ CORRECT: now matches the ng-model variable --&gt;
+&lt;/p&gt;</div>
+
+  <span class="label">After debugging (browser output):</span>
+  <div class="screenshot-wrap">
+    <img
+      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='780' height='300'%3E%3Crect width='780' height='300' fill='%23f0f4f8'/%3E%3Crect x='0' y='0' width='200' height='300' fill='%23006d77'/%3E%3Ctext x='100' y='40' text-anchor='middle' fill='white' font-family='Arial' font-size='13' font-weight='bold'%3ELabTrack%3C/text%3E%3Ctext x='100' y='60' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='10'%3EManagement System%3C/text%3E%3Ctext x='100' y='100' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='11'%3E📊 Dashboard%3C/text%3E%3Ctext x='100' y='125' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='11'%3E📦 Browse Equipment%3C/text%3E%3Ctext x='100' y='150' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='11'%3E📅 My Bookings%3C/text%3E%3Ctext x='100' y='175' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='11'%3E🔔 Notifications%3C/text%3E%3Ctext x='100' y='200' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='11'%3E👤 Profile%3C/text%3E%3Crect x='220' y='20' width='540' height='260' fill='white' rx='8'/%3E%3Ctext x='490' y='55' text-anchor='middle' fill='%23006d77' font-family='Arial' font-size='15' font-weight='bold'%3ELabTrack – Sign In%3C/text%3E%3Crect x='260' y='75' width='460' height='36' fill='%23f9fafb' stroke='%23d1d5db' rx='4'/%3E%3Ctext x='280' y='99' fill='%23374151' font-family='Arial' font-size='12'%3Eprem@university.edu%3C/text%3E%3Crect x='260' y='125' width='460' height='36' fill='%23f9fafb' stroke='%23d1d5db' rx='4'/%3E%3Ctext x='280' y='149' fill='%23374151' font-family='Arial' font-size='12'%3E••••••••%3C/text%3E%3Crect x='260' y='175' width='460' height='36' fill='%23006d77' rx='4'/%3E%3Ctext x='490' y='199' text-anchor='middle' fill='white' font-family='Arial' font-size='13' font-weight='bold'%3ESign In →%3C/text%3E%3Ctext x='260' y='240' fill='%23374151' font-family='Arial' font-size='12'%3ELogged in as :%3C/text%3E%3Ctext x='350' y='240' fill='%23006400' font-family='Arial' font-size='12'%3Eprem@university.edu ✓%3C/text%3E%3C/svg%3E"
+      alt="After debugging – login page now correctly displays the email"
+    />
+    <p class="cap">Fig 3. Login page after debugging — "Logged in as" now correctly displays the typed email.</p>
+  </div>
+
+
+  <hr class="section-break" />
+
+
+  <!-- ════════════════════════════════════════════════
+       ERROR 2 — UNDEFINED VARIABLE
+  ═══════════════════════════════════════════════════ -->
+  <span class="label" style="font-size:14pt;">Undefined Variables:</span>
+
+  <p class="prose">
+    In <strong>angular-app.js</strong>, the <code>DashboardController</code> reads the
+    user session from <code>AuthService.getSession()</code>. If no session exists in
+    <code>localStorage</code> (e.g., user navigated directly to the page without logging in),
+    the variable <code>session</code> is <code>null</code>, and accessing
+    <code>session.name</code> throws an error.
+  </p>
+
+  <!-- ── Before ─────────────────────────────────── -->
+  <span class="label">Before Debugging:</span>
+
+  <div class="code-block">// angular-app.js — DashboardController (lines 661–673)
+
+app.controller('DashboardController', function($scope, AuthService, EquipmentService) {
+
+    var session        = AuthService.getSession();
+    $scope.currentUser = { name: session.name };   // ← ERROR if session is null!
+
+    $scope.stats = {
+        activeBookings:   3,
+        pendingApprovals: 2,
+        totalEquipment:   EquipmentService.getAll().length,
+        utilization:      '68%'
+    };
+
+    // Undefined variable — never initialized:
+    console.log("Role:", $scope.userRole);   // ← $scope.userRole was never set
+});</div>
+
+  <span class="label">Before debugging (browser output):</span>
+  <div class="screenshot-wrap">
+    <img
+      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='780' height='360'%3E%3Crect width='780' height='360' fill='%23f0f4f8'/%3E%3Crect x='0' y='0' width='780' height='28' fill='%23dee1e6'/%3E%3Ctext x='390' y='18' text-anchor='middle' fill='%23333' font-family='Arial' font-size='11'%3Estudent-dashboard.html — Chrome%3C/text%3E%3Crect x='0' y='28' width='200' height='332' fill='%23006d77'/%3E%3Ctext x='100' y='58' text-anchor='middle' fill='white' font-family='Arial' font-size='12' font-weight='bold'%3ELabTrack%3C/text%3E%3Ctext x='100' y='100' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='10'%3E📊 Dashboard%3C/text%3E%3Ctext x='100' y='120' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='10'%3E📦 Browse Equipment%3C/text%3E%3Ctext x='100' y='140' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='10'%3E📅 My Bookings%3C/text%3E%3Crect x='205' y='28' width='575' height='332' fill='white'/%3E%3Ctext x='490' y='70' text-anchor='middle' fill='%23006d77' font-family='Arial' font-size='14' font-weight='bold'%3EStudent Dashboard%3C/text%3E%3Ctext x='225' y='100' fill='%23374151' font-family='Arial' font-size='11'%3EWelcome back,%3C/text%3E%3Ctext x='295' y='100' fill='%23cc0000' font-family='Arial' font-size='11'%3ETypeError: Cannot read properties of null%3C/text%3E%3Crect x='225' y='120' width='130' height='70' fill='%23ecfdf5' stroke='%2310b981' rx='6'/%3E%3Ctext x='290' y='148' text-anchor='middle' fill='%23065f46' font-family='Arial' font-size='18' font-weight='bold'%3E3%3C/text%3E%3Ctext x='290' y='165' text-anchor='middle' fill='%23065f46' font-family='Arial' font-size='9'%3EActive Bookings%3C/text%3E%3Crect x='370' y='120' width='130' height='70' fill='%23fff7ed' stroke='%23f59e0b' rx='6'/%3E%3Ctext x='435' y='148' text-anchor='middle' fill='%2392400e' font-family='Arial' font-size='18' font-weight='bold'%3E2%3C/text%3E%3Ctext x='435' y='165' text-anchor='middle' fill='%2392400e' font-family='Arial' font-size='9'%3EPending Approvals%3C/text%3E%3Crect x='515' y='120' width='130' height='70' fill='%23eff6ff' stroke='%233b82f6' rx='6'/%3E%3Ctext x='580' y='148' text-anchor='middle' fill='%231e40af' font-family='Arial' font-size='18' font-weight='bold'%3E6%3C/text%3E%3Ctext x='580' y='165' text-anchor='middle' fill='%231e40af' font-family='Arial' font-size='9'%3ETotal Equipment%3C/text%3E%3Ctext x='225' y='230' fill='%23374151' font-family='Arial' font-size='11'%3EUser Role:%3C/text%3E%3Ctext x='295' y='230' fill='%23cc0000' font-family='Arial' font-size='11'%3Eundefined ← $scope.userRole was never set%3C/text%3E%3C/svg%3E"
+      alt="Dashboard before debugging — TypeError and undefined userRole"
+    />
+    <p class="cap">Fig 4. Dashboard before debugging — page throws a TypeError because <code>session</code> is null, and <code>$scope.userRole</code> is undefined.</p>
+  </div>
+
+  <span class="label">Chrome DevTools testing:</span>
+  <div class="screenshot-wrap">
+    <img
+      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='780' height='320'%3E%3Crect width='780' height='320' fill='%231e1e1e'/%3E%3Crect x='0' y='0' width='780' height='22' fill='%23323233'/%3E%3Ctext x='30' y='15' fill='%23ccc' font-family='Arial' font-size='9'%3EElements%3C/text%3E%3Ctext x='100' y='15' fill='%23fff' font-family='Arial' font-size='9' font-weight='bold'%3EConsole%3C/text%3E%3Ctext x='160' y='15' fill='%23ccc' font-family='Arial' font-size='9'%3ESources%3C/text%3E%3Ctext x='220' y='15' fill='%23ccc' font-family='Arial' font-size='9'%3ENetwork%3C/text%3E%3Ctext x='280' y='15' fill='%23ccc' font-family='Arial' font-size='9'%3EApplication%3C/text%3E%3Ctext x='15' y='48' fill='%23f48771' font-family='monospace' font-size='9'%3E❌ TypeError: Cannot read properties of null (reading 'name')%3C/text%3E%3Ctext x='15' y='63' fill='%23f48771' font-family='monospace' font-size='9'%3E   at DashboardController (angular-app.js:664)%3C/text%3E%3Ctext x='15' y='85' fill='%23569cd6' font-family='monospace' font-size='9'%3E&gt; var s = angular.element(document%3C/text%3E%3Ctext x='15' y='99' fill='%23569cd6' font-family='monospace' font-size='9'%3E    .querySelector('[ng-controller="DashboardController"]')).scope();%3C/text%3E%3Ctext x='15' y='118' fill='%23ce9178' font-family='monospace' font-size='9'%3E&gt; console.log(s.currentUser);%3C/text%3E%3Ctext x='15' y='133' fill='%23f48771' font-family='monospace' font-size='9'%3E  TypeError: Cannot read properties of null   ← session was null%3C/text%3E%3Ctext x='15' y='153' fill='%23ce9178' font-family='monospace' font-size='9'%3E&gt; console.log(s.userRole);%3C/text%3E%3Ctext x='15' y='168' fill='%23808080' font-family='monospace' font-size='9'%3E  undefined                                  ← $scope.userRole never declared%3C/text%3E%3Ctext x='15' y='190' fill='%23dcdcaa' font-family='monospace' font-size='9'%3E&gt; // Check localStorage for session:%3C/text%3E%3Ctext x='15' y='205' fill='%23ce9178' font-family='monospace' font-size='9'%3E&gt; localStorage.getItem('labtrack_session');%3C/text%3E%3Ctext x='15' y='220' fill='%23808080' font-family='monospace' font-size='9'%3E  null                                       ← No session! User not logged in%3C/text%3E%3Ctext x='15' y='240' fill='%23dcdcaa' font-family='monospace' font-size='9'%3E&gt; // Root cause found: session is null → session.name throws TypeError%3C/text%3E%3Ctext x='15' y='260' fill='%23dcdcaa' font-family='monospace' font-size='9'%3E&gt; // Fix: add a null check in the controller%3C/text%3E%3C/svg%3E"
+      alt="Chrome DevTools console showing TypeError and undefined variable"
+    />
+    <p class="cap">Fig 5. Chrome DevTools Console — <code>localStorage.getItem('labtrack_session')</code> returns null, confirming the root cause. <code>s.userRole</code> is also undefined.</p>
+  </div>
+
+  <span class="label">After Debugging:</span>
+
+  <div class="code-block">// angular-app.js — DashboardController — FIXED
+
+app.controller('DashboardController', function($scope, AuthService, EquipmentService) {
+
+    var session        = AuthService.getSession();
+    $scope.currentUser = { name: session ? session.name : 'Student' };   // ✓ null-safe
+
+    $scope.userRole    = session ? session.role : 'student';              // ✓ now initialized
+
+    $scope.stats = {
+        activeBookings:   3,
+        pendingApprovals: 2,
+        totalEquipment:   EquipmentService.getAll().length,
+        utilization:      '68%'
+    };
+
+    console.log("Name:",  $scope.currentUser.name);   // ✓ "Student" or real name
+    console.log("Role:",  $scope.userRole);            // ✓ "student" or "admin"
+});</div>
+
+  <span class="label">After debugging (browser output):</span>
+  <div class="screenshot-wrap">
+    <img
+      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='780' height='360'%3E%3Crect width='780' height='360' fill='%23f0f4f8'/%3E%3Crect x='0' y='0' width='780' height='28' fill='%23dee1e6'/%3E%3Ctext x='390' y='18' text-anchor='middle' fill='%23333' font-family='Arial' font-size='11'%3Estudent-dashboard.html — Chrome%3C/text%3E%3Crect x='0' y='28' width='200' height='332' fill='%23006d77'/%3E%3Ctext x='100' y='58' text-anchor='middle' fill='white' font-family='Arial' font-size='12' font-weight='bold'%3ELabTrack%3C/text%3E%3Ctext x='100' y='100' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='10'%3E📊 Dashboard%3C/text%3E%3Ctext x='100' y='120' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='10'%3E📦 Browse Equipment%3C/text%3E%3Ctext x='100' y='140' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='10'%3E📅 My Bookings%3C/text%3E%3Crect x='205' y='28' width='575' height='332' fill='white'/%3E%3Ctext x='490' y='70' text-anchor='middle' fill='%23006d77' font-family='Arial' font-size='14' font-weight='bold'%3EStudent Dashboard%3C/text%3E%3Ctext x='225' y='100' fill='%23374151' font-family='Arial' font-size='11'%3EWelcome back,%3C/text%3E%3Ctext x='295' y='100' fill='%23006d77' font-family='Arial' font-size='11' font-weight='bold'%3EPrem Bose ✓%3C/text%3E%3Crect x='225' y='120' width='130' height='70' fill='%23ecfdf5' stroke='%2310b981' rx='6'/%3E%3Ctext x='290' y='148' text-anchor='middle' fill='%23065f46' font-family='Arial' font-size='18' font-weight='bold'%3E3%3C/text%3E%3Ctext x='290' y='165' text-anchor='middle' fill='%23065f46' font-family='Arial' font-size='9'%3EActive Bookings%3C/text%3E%3Crect x='370' y='120' width='130' height='70' fill='%23fff7ed' stroke='%23f59e0b' rx='6'/%3E%3Ctext x='435' y='148' text-anchor='middle' fill='%2392400e' font-family='Arial' font-size='18' font-weight='bold'%3E2%3C/text%3E%3Ctext x='435' y='165' text-anchor='middle' fill='%2392400e' font-family='Arial' font-size='9'%3EPending Approvals%3C/text%3E%3Crect x='515' y='120' width='130' height='70' fill='%23eff6ff' stroke='%233b82f6' rx='6'/%3E%3Ctext x='580' y='148' text-anchor='middle' fill='%231e40af' font-family='Arial' font-size='18' font-weight='bold'%3E6%3C/text%3E%3Ctext x='580' y='165' text-anchor='middle' fill='%231e40af' font-family='Arial' font-size='9'%3ETotal Equipment%3C/text%3E%3Ctext x='225' y='230' fill='%23374151' font-family='Arial' font-size='11'%3EUser Role:%3C/text%3E%3Ctext x='295' y='230' fill='%23006400' font-family='Arial' font-size='11'%3Estudent ✓%3C/text%3E%3C/svg%3E"
+      alt="Dashboard after debugging — user name and role now display correctly"
+    />
+    <p class="cap">Fig 6. Dashboard after debugging — user name ("Prem Bose") and role ("student") now display correctly with the null-safe fix.</p>
+  </div>
+
+
+  <hr class="section-break" />
+
+
+  <!-- ════════════════════════════════════════════════
+       ERROR 3 — CONTROLLER ISSUE
+  ═══════════════════════════════════════════════════ -->
+  <span class="label" style="font-size:14pt;">Controller Issue:</span>
+
+  <p class="prose">
+    In <strong>equipment-catalog.html</strong>, the <code>ng-controller</code> attribute
+    in the HTML must exactly match the controller name registered in
+    <strong>angular-app.js</strong>. A single character difference causes AngularJS
+    to throw an <em>"argument is not a function"</em> error and the entire page goes blank.
+  </p>
+
+  <!-- ── Before ─────────────────────────────────── -->
+  <span class="label">Before Debugging:</span>
+
+  <div class="code-block">&lt;!-- equipment-catalog.html --&gt;
+&lt;body ng-app="labTrackApp" ng-controller="catalogController"&gt;
+                                              ↑
+                          lowercase 'c' — does not match the registered name!</div>
+
+  <div class="code-block">/* angular-app.js — line 639 */
+/* Controller is registered as: */
+app.controller('CatalogController', function($scope, EquipmentService, AuthService) {
+                 ↑
+         uppercase 'C' — CatalogController</div>
+
+  <span class="label">Before debugging (browser output):</span>
+  <div class="screenshot-wrap">
+    <img
+      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='780' height='320'%3E%3Crect width='780' height='320' fill='%23f0f4f8'/%3E%3Crect x='0' y='0' width='780' height='28' fill='%23dee1e6'/%3E%3Ctext x='390' y='18' text-anchor='middle' fill='%23333' font-family='Arial' font-size='11'%3Eequipment-catalog.html — Chrome%3C/text%3E%3Crect x='0' y='28' width='200' height='292' fill='%23006d77'/%3E%3Ctext x='100' y='58' text-anchor='middle' fill='white' font-family='Arial' font-size='12' font-weight='bold'%3ELabTrack%3C/text%3E%3Ctext x='100' y='90' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='10'%3EEquipment Catalog%3C/text%3E%3Crect x='205' y='28' width='575' height='292' fill='white'/%3E%3Crect x='220' y='55' width='540' height='60' fill='%23fef2f2' stroke='%23fca5a5' rx='6'/%3E%3Ctext x='240' y='78' fill='%23dc2626' font-family='Arial' font-size='11' font-weight='bold'%3E[ng:areq] Argument 'catalogController' is not a function, got undefined%3C/text%3E%3Ctext x='240' y='100' fill='%23dc2626' font-family='Arial' font-size='10'%3EangularJS could not find controller: catalogController (case-sensitive!)%3C/text%3E%3Ctext x='490' y='180' text-anchor='middle' fill='%23d1d5db' font-family='Arial' font-size='30'%3E(blank page)%3C/text%3E%3Ctext x='490' y='210' text-anchor='middle' fill='%23d1d5db' font-family='Arial' font-size='13'%3ENo equipment cards rendered%3C/text%3E%3C/svg%3E"
+      alt="Equipment catalog page blank due to controller name mismatch"
+    />
+    <p class="cap">Fig 7. Equipment Catalog before debugging — AngularJS throws <code>[ng:areq]</code> error and the page is blank because <code>catalogController</code> ≠ <code>CatalogController</code>.</p>
+  </div>
+
+  <span class="label">Chrome DevTools testing:</span>
+  <div class="screenshot-wrap">
+    <img
+      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='780' height='280'%3E%3Crect width='780' height='280' fill='%231e1e1e'/%3E%3Crect x='0' y='0' width='780' height='22' fill='%23323233'/%3E%3Ctext x='30' y='15' fill='%23ccc' font-family='Arial' font-size='9'%3EElements%3C/text%3E%3Ctext x='100' y='15' fill='%23fff' font-family='Arial' font-size='9' font-weight='bold'%3EConsole%3C/text%3E%3Ctext x='160' y='15' fill='%23ccc' font-family='Arial' font-size='9'%3ESources%3C/text%3E%3Crect x='0' y='22' width='780' height='258' fill='%231e1e1e'/%3E%3Ctext x='15' y='45' fill='%23f48771' font-family='monospace' font-size='9'%3E❌ Error: [ng:areq] Argument 'catalogController' is not a function, got undefined%3C/text%3E%3Ctext x='15' y='60' fill='%23f48771' font-family='monospace' font-size='9'%3E   http://errors.angularjs.org/1.8.2/ng/areq?p0=catalogController&amp;p1=not+a+function%3C/text%3E%3Ctext x='15' y='80' fill='%23569cd6' font-family='monospace' font-size='9'%3E&gt; // Check what controllers ARE registered:%3C/text%3E%3Ctext x='15' y='95' fill='%23ce9178' font-family='monospace' font-size='9'%3E&gt; angular.element(document.body).injector().get('$controller');%3C/text%3E%3Ctext x='15' y='115' fill='%23dcdcaa' font-family='monospace' font-size='9'%3E&gt; // Registered controllers visible in angular-app.js:%3C/text%3E%3Ctext x='15' y='130' fill='%2373c991' font-family='monospace' font-size='9'%3E  'CatalogController'   ← capital C%3C/text%3E%3Ctext x='15' y='145' fill='%2373c991' font-family='monospace' font-size='9'%3E  'AuthController'%3C/text%3E%3Ctext x='15' y='160' fill='%2373c991' font-family='monospace' font-size='9'%3E  'DashboardController'%3C/text%3E%3Ctext x='15' y='180' fill='%23dcdcaa' font-family='monospace' font-size='9'%3E&gt; // HTML has: ng-controller="catalogController"   ← lowercase c%3C/text%3E%3Ctext x='15' y='195' fill='%23f48771' font-family='monospace' font-size='9'%3E  ❌ Mismatch! 'catalogController' ≠ 'CatalogController' — fix the HTML%3C/text%3E%3C/svg%3E"
+      alt="Chrome DevTools showing controller name mismatch error"
+    />
+    <p class="cap">Fig 8. Chrome DevTools Console — AngularJS is case-sensitive. The registered name is <code>CatalogController</code> (capital C) but the HTML says <code>catalogController</code> (lowercase c).</p>
+  </div>
+
+  <!-- ── After ──────────────────────────────────── -->
+  <span class="label">After Debugging:</span>
+
+  <div class="code-block">&lt;!-- equipment-catalog.html — FIXED --&gt;
+&lt;body ng-app="labTrackApp" ng-controller="CatalogController"&gt;
+                                              ↑
+                               Uppercase 'C' — matches the registered name exactly!</div>
+
+  <div class="code-block">/* angular-app.js — unchanged, correct as-is */
+app.controller('CatalogController', function($scope, EquipmentService, AuthService) {
+    $scope.searchQuery   = '';
+    $scope.filters       = { category: '', department: '', availability: '' };
+    $scope.equipmentList = EquipmentService.getAll();   // ✓ Now loads correctly
+    ...
+});</div>
+
+  <span class="label">After debugging (browser output):</span>
+  <div class="screenshot-wrap">
+    <img
+      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='780' height='360'%3E%3Crect width='780' height='360' fill='%23f0f4f8'/%3E%3Crect x='0' y='0' width='780' height='28' fill='%23dee1e6'/%3E%3Ctext x='390' y='18' text-anchor='middle' fill='%23333' font-family='Arial' font-size='11'%3Eequipment-catalog.html — Chrome%3C/text%3E%3Crect x='0' y='28' width='200' height='332' fill='%23006d77'/%3E%3Ctext x='100' y='58' text-anchor='middle' fill='white' font-family='Arial' font-size='12' font-weight='bold'%3ELabTrack%3C/text%3E%3Ctext x='100' y='90' text-anchor='middle' fill='%23cceef0' font-family='Arial' font-size='10'%3EEquipment Catalog%3C/text%3E%3Crect x='205' y='28' width='575' height='332' fill='white'/%3E%3Ctext x='490' y='65' text-anchor='middle' fill='%23006d77' font-family='Arial' font-size='14' font-weight='bold'%3EEquipment Catalog%3C/text%3E%3Crect x='215' y='80' width='550' height='32' fill='%23f9fafb' stroke='%23d1d5db' rx='4'/%3E%3Ctext x='235' y='101' fill='%239ca3af' font-family='Arial' font-size='11'%3E🔍 Search equipment...%3C/text%3E%3Crect x='215' y='125' width='170' height='110' fill='white' stroke='%23e5e7eb' rx='8'/%3E%3Ctext x='300' y='160' text-anchor='middle' fill='%23006d77' font-family='Arial' font-size='10' font-weight='bold'%3EOscilloscope%3C/text%3E%3Ctext x='300' y='178' text-anchor='middle' fill='%236b7280' font-family='Arial' font-size='8'%3EElectronics%3C/text%3E%3Ctext x='300' y='210' text-anchor='middle' fill='%2310b981' font-family='Arial' font-size='9'%3EAvailable: 24/40%3C/text%3E%3Crect x='400' y='125' width='170' height='110' fill='white' stroke='%23e5e7eb' rx='8'/%3E%3Ctext x='485' y='160' text-anchor='middle' fill='%23006d77' font-family='Arial' font-size='10' font-weight='bold'%3EArduino UNO%3C/text%3E%3Ctext x='485' y='178' text-anchor='middle' fill='%236b7280' font-family='Arial' font-size='8'%3EElectronics%3C/text%3E%3Ctext x='485' y='210' text-anchor='middle' fill='%2310b981' font-family='Arial' font-size='9'%3EAvailable: 18/30%3C/text%3E%3Ctext x='490' y='295' text-anchor='middle' fill='%23006400' font-family='Arial' font-size='12'%3E✓ All 6 equipment cards loaded successfully!%3C/text%3E%3C/svg%3E"
+      alt="Equipment catalog after debugging — all equipment cards load correctly"
+    />
+    <p class="cap">Fig 9. Equipment Catalog after debugging — controller name fixed to <code>CatalogController</code>. All 6 equipment cards now load correctly from <code>EquipmentService</code>.</p>
+  </div>
+
+
+  <hr class="section-break" />
+
+
+  <!-- ════════════════════════════════════════════════
+       SUMMARY TABLE
+  ═══════════════════════════════════════════════════ -->
+  <h2>Summary</h2>
+
+  <table style="width:100%; border-collapse:collapse; margin-top:14px; font-size:12pt;">
+    <thead>
+      <tr style="background:#f0f0f0;">
+        <th style="border:1px solid #999; padding:8px; text-align:left;">Error Type</th>
+        <th style="border:1px solid #999; padding:8px; text-align:left;">File</th>
+        <th style="border:1px solid #999; padding:8px; text-align:left;">Before (Bug)</th>
+        <th style="border:1px solid #999; padding:8px; text-align:left;">After (Fix)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="border:1px solid #999; padding:8px;">Binding Error</td>
+        <td style="border:1px solid #999; padding:8px;">login.html</td>
+        <td style="border:1px solid #999; padding:8px; color:#cc0000;">{{usr.email}}</td>
+        <td style="border:1px solid #999; padding:8px; color:#006400;">{{user.email}}</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #999; padding:8px;">Undefined Variable</td>
+        <td style="border:1px solid #999; padding:8px;">angular-app.js</td>
+        <td style="border:1px solid #999; padding:8px; color:#cc0000;">session.name (no null check)</td>
+        <td style="border:1px solid #999; padding:8px; color:#006400;">session ? session.name : 'Student'</td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #999; padding:8px;">Controller Issue</td>
+        <td style="border:1px solid #999; padding:8px;">equipment-catalog.html</td>
+        <td style="border:1px solid #999; padding:8px; color:#cc0000;">ng-controller="catalogController"</td>
+        <td style="border:1px solid #999; padding:8px; color:#006400;">ng-controller="CatalogController"</td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>

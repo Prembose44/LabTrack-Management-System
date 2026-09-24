@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LabTrack â€” Student Dashboard</title>
+  <script src="js/auth.js"></script>
+  <script>LabTrackAuth.guardStudent();</script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+  <script src="js/angular-app.js?v=2"></script>
+</head>
+<body ng-app="labTrackApp" ng-controller="DashboardController">
+  <div class="app-layout">
+    <aside class="app-sidebar" aria-label="Sidebar">
+      <a href="dashboard.html" class="sidebar-brand">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#006d77" stroke-width="2"><circle cx="12" cy="14" r="3"/><path d="M12 2v4M8 6h8"/></svg>
+        <div><strong>LabTrack</strong><small>Management System</small></div>
+      </a>
+      <nav>
+        <ul class="sidebar-nav">
+          <li><a href="student-dashboard.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a></li>
+          <li><a href="equipment-catalog.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8"/></svg>Browse Equipment</a></li>
+          <li><a href="my-bookings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>My Bookings</a></li>
+          <li><a href="bundle-booking.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>Bundle Booking</a></li>
+          <li><a href="lab-calendar.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/></svg>Lab Calendar</a></li>
+          <li><a href="notifications.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>Notifications</a></li>
+          <li><a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a></li>
+          <li><a href="settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42"/></svg>Settings</a></li>
+          <li><a href="login.html" onclick="LabTrackAuth.logout();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <div class="app-main">
+      <header class="app-topbar">
+        <form class="topbar-search" role="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="search" placeholder="Search equipment, bookings..." aria-label="Search">
+        </form>
+        <div class="topbar-actions">
+          <button type="button" class="icon-btn" aria-label="Notifications"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg><span class="dot"></span></button>
+          <button type="button" class="icon-btn" aria-label="Settings"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg></button>
+          <div class="user-chip">
+            <img src="https://i.pravatar.cc/72?img=12" alt="Arjun Kumar">
+            <div><span data-auth-name>Arjun Kumar</span><small data-auth-role>Student</small></div>
+          </div>
+        </div>
+      </header>
+
+      <main class="app-content">
+        <header>
+          <p style="margin:0;font-size:0.75rem;color:#9ca3af;letter-spacing:0.08em">WELCOME BACK,</p>
+          <h1 class="page-title">Arjun Kumar ðŸ‘‹</h1>
+          <p class="page-sub">Computer Science Department · <time data-current-date></time></p>
+        </header>
+
+        <section class="stats-grid-4" aria-label="Quick stats">
+          <article class="card mini-stat"><div class="mini-stat-icon" style="background:#dbeafe;color:#2563eb"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/></svg></div><div><strong style="font-size:1.5rem">12</strong><div style="font-size:0.8rem;color:#6b7280">Equipment Booked</div></div></article>
+          <article class="card mini-stat"><div class="mini-stat-icon" style="background:#d1fae5;color:#059669"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div><strong style="font-size:1.5rem">3</strong><div style="font-size:0.8rem;color:#6b7280">Pending Approvals</div></div></article>
+          <article class="card mini-stat"><div class="mini-stat-icon" style="background:#fef3c7;color:#d97706"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/></svg></div><div><strong style="font-size:1.5rem">2</strong><div style="font-size:0.8rem;color:#6b7280">Returns Due</div></div></article>
+          <article class="card mini-stat"><div class="mini-stat-icon" style="background:#fee2e2;color:#dc2626"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg></div><div><strong style="font-size:1.5rem">1</strong><div style="font-size:0.8rem;color:#6b7280">Action Required</div></div></article>
+        </section>
+
+        <div class="dashboard-grid">
+          <section class="card" aria-labelledby="recent-title">
+            <header style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+              <h2 id="recent-title" style="margin:0;font-size:1.1rem">Recent Bookings</h2>
+              <a href="my-bookings.html">View All &rarr;</a>
+            </header>
+            <table class="data-table">
+              <thead><tr><th>EQUIPMENT</th><th>BOOKED ON</th><th>RETURN DATE</th><th>STATUS</th><th>ACTION</th></tr></thead>
+              <tbody>
+                <tr><td>Oscilloscope</td><td>06 May 2024</td><td>13 May 2024</td><td><span class="badge badge-active">Active</span></td><td><a href="equipment-detail.html">View</a></td></tr>
+                <tr><td>Arduino UNO</td><td>07 May 2024</td><td>14 May 2024</td><td><span class="badge badge-pending">Pending</span></td><td><a href="equipment-detail.html">View</a></td></tr>
+                <tr><td>Raspberry Pi 4</td><td>05 May 2024</td><td>12 May 2024</td><td><span class="badge badge-done">Completed</span></td><td><a href="equipment-detail.html">View</a></td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <aside aria-label="Availability summary">
+            <section class="card" style="margin-bottom:1rem">
+              <h3 style="margin:0 0 1rem;font-size:0.95rem">Equipment Availability</h3>
+              <div class="progress-row"><header><span>Electronics Lab</span><span>24/40</span></header><div class="progress-bar"><span style="width:60%"></span></div></div>
+              <div class="progress-row"><header><span>Physics Lab</span><span>18/30</span></header><div class="progress-bar"><span style="width:60%;background:#2a9d8f"></span></div></div>
+              <div class="progress-row"><header><span>Mechanical Lab</span><span>12/25</span></header><div class="progress-bar"><span style="width:48%;background:#f59e0b"></span></div></div>
+              <div class="progress-row"><header><span>Computer Lab</span><span>32/50</span></header><div class="progress-bar"><span style="width:64%;background:#3b82f6"></span></div></div>
+            </section>
+            <section class="card">
+              <h3 style="margin:0 0 1rem;font-size:0.95rem">Upcoming Returns</h3>
+              <article style="padding:0.75rem;background:#fef3c7;border-radius:10px;margin-bottom:0.5rem;font-size:0.85rem"><strong>Digital Multimeter</strong><br>Due today by 5:00 PM</article>
+              <article style="padding:0.75rem;background:#fee2e2;border-radius:10px;font-size:0.85rem"><strong>Soldering Station</strong><br>Overdue by 1 day</article>
+            </section>
+          </aside>
+        </div>
+
+        <nav class="action-row" aria-label="Quick actions">
+          <a class="btn btn-primary" href="equipment-catalog.html">Browse Equipment</a>
+          <a class="btn btn-outline" href="my-bookings.html">My Bookings</a>
+          <button type="button" class="btn" style="background:#fecaca;color:#991b1b" data-open-modal="damageModal">Report Damage</button>
+        </nav>
+      </main>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="damageModal" role="dialog" aria-modal="true" aria-labelledby="damage-title">
+    <div class="modal">
+      <h2 id="damage-title">Report Damage</h2>
+      <form data-validate="damage-report" novalidate>
+        <div class="form-message"></div>
+        <div class="field-wrap"><label for="equipmentName">Equipment Name</label><input type="text" id="equipmentName" name="equipmentName" required pattern="[A-Za-z\s]+"><span class="validation-thumb"></span><span class="field-error"></span></div>
+        <div class="field-wrap"><label for="reportedBy">Reported By</label><input type="text" id="reportedBy" name="reportedBy" required pattern="[A-Za-z\s]+"><span class="validation-thumb"></span><span class="field-error"></span></div>
+        <div class="field-wrap"><label for="damageLocation">Lab Location</label><input type="text" id="damageLocation" name="damageLocation" required pattern="[A-Za-z\s]+"><span class="validation-thumb"></span><span class="field-error"></span></div>
+        <div style="display:flex;gap:0.5rem;margin-top:1rem"><button type="submit" class="btn btn-primary">Submit</button><button type="button" class="btn btn-outline" data-close-modal>Cancel</button></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/app.js"></script>
+  <script>LabTrackAuth.hydratePage();</script>
+</body>
+</html>
+

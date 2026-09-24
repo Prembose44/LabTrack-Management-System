@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LabTrack â€” Create Account</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+  <script src="js/angular-app.js?v=2"></script>
+</head>
+<body ng-app="labTrackApp" ng-controller="AuthController">
+  <div class="auth-page" style="padding:0;min-height:100vh;display:grid;grid-template-columns:1fr 1fr">
+    <aside class="auth-brand-panel" style="min-height:100vh">
+      <a href="index.html" class="logo-link" style="color:#fff">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="14" r="3"/><path d="M12 2v4M8 6h8"/></svg>
+        LabTrack
+      </a>
+      <h2 style="font-size:2rem;margin-top:3rem">Precision in every process.</h2>
+      <p>Streamline your equipment bookings, manage inventory, and maintain pristine operational records with clinical efficiency.</p>
+    </aside>
+
+    <main class="auth-form-panel" style="display:flex;flex-direction:column;justify-content:center;background:#f9fafb">
+      <header>
+        <h1 style="text-align:left;margin:0">Create Account</h1>
+        <p class="auth-sub" style="text-align:left;margin:0.25rem 0 1.5rem">Register to access the management system.</p>
+      </header>
+
+      <form ng-submit="doRegister()" novalidate>
+        <div class="form-message" role="status" ng-show="registerError" style="color:#dc2626;margin-bottom:1rem;font-size:0.9rem">{{registerError}}</div>
+
+        <div class="field-wrap icon-left">
+          <label for="fullName">Full Name</label>
+          <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <input type="text" id="fullName" name="fullName" ng-model="register.name" placeholder="Dr. Jane Doe" required>
+          <span class="validation-thumb"></span>
+          <span class="field-error"></span>
+        </div>
+
+        <div class="field-wrap icon-left">
+          <label for="email">Email Address</label>
+          <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
+          <input type="email" id="email" name="email" ng-model="register.email" placeholder="jane.doe@institution.edu" required>
+          <span class="validation-thumb"></span>
+          <span class="field-error"></span>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="field-wrap icon-left">
+            <label for="password">Password</label>
+            <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input type="password" id="password" name="password" ng-model="register.password" required minlength="6">
+            <span class="validation-thumb"></span>
+            <span class="field-error"></span>
+          </div>
+          <div class="field-wrap icon-left">
+            <label for="confirmPassword">Confirm Password</label>
+            <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/></svg>
+            <input type="password" id="confirmPassword" name="confirmPassword" ng-model="register.confirmPassword" required minlength="6">
+            <span class="validation-thumb"></span>
+            <span class="field-error" ng-show="register.password !== register.confirmPassword">Passwords do not match</span>
+          </div>
+        </div>
+
+        <div class="field-wrap icon-left">
+          <label for="department">Department</label>
+          <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg>
+          <select id="department" name="department" ng-model="register.department">
+            <option value="">Select Department</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Biomedical Engineering">Biomedical Engineering</option>
+            <option value="Physics">Physics</option>
+          </select>
+          <span class="validation-thumb"></span>
+          <span class="field-error"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" ng-disabled="loading">
+          <span ng-show="!loading">Complete Registration &rarr;</span>
+          <span ng-show="loading">Registering...</span>
+        </button>
+        <p style="text-align:center;margin-top:1rem;color:#6b7280;font-size:0.9rem">Already have an account? <a href="login.html">Sign In</a></p>
+      </form>
+    </main>
+  </div>
+  <script src="js/validation.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+

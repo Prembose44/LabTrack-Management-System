@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LabTrack â€” Settings</title>
+  <script src="js/auth.js"></script>
+  <script>LabTrackAuth.guardStudent();</script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+  <script src="js/angular-app.js?v=2"></script>
+</head>
+<body ng-app="labTrackApp" ng-controller="ProfileController">
+  <div class="app-layout">
+    <aside class="app-sidebar">
+      <a href="dashboard.html" class="sidebar-brand"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#006d77" stroke-width="2"><circle cx="12" cy="14" r="3"/><path d="M12 2v4M8 6h8"/></svg><div><strong>LabTrack</strong><small>Management System</small></div></a>
+      <nav><ul class="sidebar-nav">
+        <li><a href="student-dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a></li>
+        <li><a href="equipment-catalog.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8"/></svg>Browse Equipment</a></li>
+        <li><a href="my-bookings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/></svg>My Bookings</a></li>
+        <li><a href="bundle-booking.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>Bundle Booking</a></li>
+        <li><a href="notifications.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg>Notifications</a></li>
+        <li><a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a></li>
+        <li><a href="settings.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42"/></svg>Settings</a></li>
+        <li><a href="login.html" onclick="LabTrackAuth.logout();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/></svg>Logout</a></li>
+      </ul></nav>
+    </aside>
+    <div class="app-main">
+      <header class="app-topbar"><h1 style="margin:0;font-size:1.25rem">Settings</h1><div class="topbar-actions"><img src="https://i.pravatar.cc/72?img=12" alt="" style="width:36px;height:36px;border-radius:50%"></div></header>
+      <main class="app-content">
+        <header><h2 class="page-title" style="font-size:1.5rem">Security &amp; Preferences</h2><p class="page-sub">Configure notifications, password, and display options.</p></header>
+        <section class="card" style="max-width:640px">
+          <form data-validate="profile" novalidate aria-label="Security settings">
+            <div class="form-message"></div>
+            <fieldset style="border:none;padding:0;margin:0 0 1.5rem">
+              <legend style="font-weight:600;margin-bottom:0.75rem">Change Password</legend>
+              <div class="field-wrap"><label for="currentPwd">Current Password</label><input type="password" id="currentPwd" name="currentPassword" minlength="8"><span class="validation-thumb"></span><span class="field-error"></span></div>
+              <div class="field-wrap"><label for="newPwd">New Password</label><input type="password" id="newPwd" name="password" minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$"><span class="validation-thumb"></span><span class="field-error"></span></div>
+            </fieldset>
+            <fieldset style="border:none;padding:0;margin:0 0 1.5rem">
+              <legend style="font-weight:600;margin-bottom:0.75rem">Notification Preferences</legend>
+              <label><input type="checkbox" ng-model="settings.emailAlerts"> Email booking confirmations</label><br>
+              <label><input type="checkbox" ng-model="settings.returnReminders"> Return reminders</label><br>
+              <label><input type="checkbox" ng-model="settings.smsAlerts"> Lab maintenance alerts</label>
+            </fieldset>
+            <fieldset style="border:none;padding:0;margin:0 0 1rem">
+              <legend style="font-weight:600;margin-bottom:0.75rem">Display</legend>
+              <div class="field-wrap"><label for="timezone">Timezone</label><select id="timezone" name="department" ng-model="settings.timezone" required><option value="ist">Asia/Kolkata (IST)</option><option value="utc">UTC</option></select><span class="validation-thumb"></span><span class="field-error"></span></div>
+            </fieldset>
+            <button type="submit" class="btn btn-primary">Save Settings</button>
+          </form>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="js/auth.js"></script>
+  <script src="js/validation.js"></script>
+  <script>LabTrackAuth.hydratePage();</script>
+</body>
+</html>
+

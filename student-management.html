@@ -1,0 +1,409 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LabTrack â€” Student Management</title>
+  <script src="js/auth.js"></script>
+  <script>LabTrackAuth.guardAdmin();</script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+  <script src="js/angular-app.js?v=2"></script>
+</head>
+<body ng-app="labTrackApp" ng-controller="StudentMgmtController">
+  <div class="app-layout">
+    <!-- â”€â”€ Admin Sidebar â”€â”€ -->
+    <aside class="app-sidebar" aria-label="Admin navigation">
+      <a href="admin-dashboard.html" class="sidebar-brand">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#006d77" stroke-width="2"><circle cx="12" cy="14" r="3"/><path d="M12 2v4M8 6h8"/></svg>
+        <div><strong>LabTrack</strong><small>Management System</small></div>
+      </a>
+      <nav>
+        <ul class="sidebar-nav">
+          <li><a href="admin-dashboard.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Dashboard</a></li>
+          <li><a href="equipment-management.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            Browse Equipment</a></li>
+          <li><a href="booking-reports.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            Reports</a></li>
+          <li><a href="maintenance.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            Maintenance</a></li>
+          <li><a href="student-management.html" class="active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Students</a></li>
+          <li style="margin-top:auto">
+            <a href="login.html" onclick="LabTrackAuth.logout();return false;" style="color:#dc2626">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <div class="app-main">
+      <!-- â”€â”€ Topbar â”€â”€ -->
+      <header class="app-topbar">
+        <form class="topbar-search" role="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="search" id="studentSearch" ng-model="searchQuery" placeholder="Search students by ID, Name, or Dept..." aria-label="Search students">
+        </form>
+        <div class="topbar-actions">
+          <button type="button" class="icon-btn" aria-label="Notifications">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="dot"></span>
+          </button>
+          <div class="user-chip">
+            <img src="https://i.pravatar.cc/72?img=15" alt="Admin">
+            <div><span data-auth-name>Arjun Kumar</span><small data-auth-role>Lab Administrator</small></div>
+          </div>
+        </div>
+      </header>
+
+      <!-- â”€â”€ Content â”€â”€ -->
+      <main class="app-content">
+        <!-- Page Header -->
+        <header style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem">
+          <div>
+            <h1 class="page-title">Directory</h1>
+            <p class="page-sub" style="margin-bottom:0">Manage all registered laboratory users and their active statuses.</p>
+          </div>
+          <div style="display:flex;gap:0.75rem">
+            <button type="button" class="btn btn-outline" data-open-modal="filterModal">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+              Filter
+            </button>
+            <button type="button" class="btn btn-primary" data-open-modal="addStudentModal">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+              Add Student
+            </button>
+          </div>
+        </header>
+
+        <!-- Stats -->
+        <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem" aria-label="Student statistics">
+          <article class="card" style="display:flex;align-items:center;gap:1rem">
+            <div style="width:48px;height:48px;background:#e0f2fe;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#0284c7;flex-shrink:0">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <div style="font-size:0.75rem;color:#6b7280;font-weight:600;letter-spacing:0.04em">TOTAL REGISTERED</div>
+              <strong style="font-size:1.75rem;color:#1f2937">1,248</strong>
+              <div style="font-size:0.75rem;color:#10b981">+12 this week</div>
+            </div>
+          </article>
+          <article class="card" style="display:flex;align-items:center;gap:1rem">
+            <div style="width:48px;height:48px;background:#d1fae5;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#059669;flex-shrink:0">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>
+            </div>
+            <div>
+              <div style="font-size:0.75rem;color:#6b7280;font-weight:600;letter-spacing:0.04em">ACTIVE BOOKINGS</div>
+              <strong style="font-size:1.75rem;color:#1f2937">84</strong>
+              <div style="font-size:0.75rem;color:#6b7280">Across all departments</div>
+            </div>
+          </article>
+          <article class="card" style="display:flex;align-items:center;gap:1rem">
+            <div style="width:48px;height:48px;background:#fee2e2;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#dc2626;flex-shrink:0">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <div>
+              <div style="font-size:0.75rem;color:#6b7280;font-weight:600;letter-spacing:0.04em">OVERDUE EQUIPMENT</div>
+              <strong style="font-size:1.75rem;color:#dc2626">12</strong>
+              <div style="font-size:0.75rem;color:#dc2626">+3 since last week</div>
+            </div>
+          </article>
+        </section>
+
+        <!-- Student Roster -->
+        <section class="card">
+          <header style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+            <h2 style="margin:0;font-size:1.1rem">Student Roster</h2>
+            <button type="button" class="icon-btn" aria-label="More options">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+            </button>
+          </header>
+          <table class="data-table" id="studentTable">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Student ID</th>
+                <th>Department</th>
+                <th>Status</th>
+                <th>Active</th>
+                <th>Overdue</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center;gap:0.6rem">
+                    <img src="https://i.pravatar.cc/40?img=47" alt="Sarah Jenkins" style="width:32px;height:32px;border-radius:50%;object-fit:cover">
+                    <div>
+                      <div style="font-weight:600;font-size:0.875rem">Sarah Jenkins</div>
+                      <div style="font-size:0.75rem;color:#6b7280">s.jenkins@uni.edu</div>
+                    </div>
+                  </div>
+                </td>
+                <td style="color:#006d77;font-weight:600">ENG-4921</td>
+                <td>Mechanical Eng.</td>
+                <td><span class="badge badge-active">Clear</span></td>
+                <td>2</td>
+                <td>0</td>
+                <td>
+                  <div style="display:flex;gap:0.5rem">
+                    <button type="button" class="btn btn-outline" style="padding:0.3rem 0.75rem;font-size:0.75rem" onclick="viewStudent('Sarah Jenkins')">View</button>
+                    <button type="button" class="btn" style="padding:0.3rem 0.75rem;font-size:0.75rem;background:#fee2e2;color:#991b1b;border:none" onclick="restrictStudent(this)">Restrict</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center;gap:0.6rem">
+                    <div style="width:32px;height:32px;border-radius:50%;background:#dbeafe;color:#1d4ed8;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0">MC</div>
+                    <div>
+                      <div style="font-weight:600;font-size:0.875rem">Marcus Chen</div>
+                      <div style="font-size:0.75rem;color:#6b7280">m.chen@uni.edu</div>
+                    </div>
+                  </div>
+                </td>
+                <td style="color:#006d77;font-weight:600">BIO-8832</td>
+                <td>Biotechnology</td>
+                <td><span class="badge" style="background:#fee2e2;color:#991b1b">Restricted</span></td>
+                <td>1</td>
+                <td style="color:#dc2626;font-weight:600">2</td>
+                <td>
+                  <div style="display:flex;gap:0.5rem">
+                    <button type="button" class="btn btn-outline" style="padding:0.3rem 0.75rem;font-size:0.75rem" onclick="viewStudent('Marcus Chen')">View</button>
+                    <button type="button" class="btn btn-primary" style="padding:0.3rem 0.75rem;font-size:0.75rem" onclick="clearStudent(this)">Clear</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center;gap:0.6rem">
+                    <img src="https://i.pravatar.cc/40?img=12" alt="David Okafor" style="width:32px;height:32px;border-radius:50%;object-fit:cover">
+                    <div>
+                      <div style="font-weight:600;font-size:0.875rem">David Okafor</div>
+                      <div style="font-size:0.75rem;color:#6b7280">d.okafor@uni.edu</div>
+                    </div>
+                  </div>
+                </td>
+                <td style="color:#006d77;font-weight:600">CHM-2109</td>
+                <td>Chemistry</td>
+                <td><span class="badge badge-pending">Warning</span></td>
+                <td>3</td>
+                <td style="color:#d97706;font-weight:600">1</td>
+                <td>
+                  <div style="display:flex;gap:0.5rem">
+                    <button type="button" class="btn btn-outline" style="padding:0.3rem 0.75rem;font-size:0.75rem" onclick="viewStudent('David Okafor')">View</button>
+                    <button type="button" class="btn btn-outline" style="padding:0.3rem 0.75rem;font-size:0.75rem;border-color:#d97706;color:#d97706">Warn</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center;gap:0.6rem">
+                    <div style="width:32px;height:32px;border-radius:50%;background:#d1fae5;color:#065f46;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0">EL</div>
+                    <div>
+                      <div style="font-weight:600;font-size:0.875rem">Emma Lin</div>
+                      <div style="font-size:0.75rem;color:#6b7280">e.lin@uni.edu</div>
+                    </div>
+                  </div>
+                </td>
+                <td style="color:#006d77;font-weight:600">PHY-5541</td>
+                <td>Physics</td>
+                <td><span class="badge badge-active">Clear</span></td>
+                <td>0</td>
+                <td>0</td>
+                <td>
+                  <div style="display:flex;gap:0.5rem">
+                    <button type="button" class="btn btn-outline" style="padding:0.3rem 0.75rem;font-size:0.75rem" onclick="viewStudent('Emma Lin')">View</button>
+                    <button type="button" class="btn btn-outline" style="padding:0.3rem 0.75rem;font-size:0.75rem;background:#fee2e2;color:#991b1b;border-color:#fca5a5" onclick="restrictStudent(this)">Restrict</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <!-- Dynamically added students -->
+            <tbody>
+              <tr ng-repeat="s in addedStudents">
+                <td>
+                  <div style="display:flex;align-items:center;gap:0.6rem">
+                    <div style="width:32px;height:32px;border-radius:50%;background:#e0f2fe;color:#0369a1;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;flex-shrink:0">{{s.name.charAt(0)}}</div>
+                    <div><div style="font-weight:600;font-size:0.875rem">{{s.name}}</div><div style="font-size:0.75rem;color:#6b7280">{{s.id.toLowerCase()}}@uni.edu</div></div>
+                  </div>
+                </td>
+                <td style="color:#006d77;font-weight:600">{{s.id}}</td>
+                <td>{{s.department}}</td>
+                <td><span class="badge"
+                  ng-style="(s.status || 'Clear')==='Clear' ? {background:'#d1fae5',color:'#065f46'} :
+                             {background:'#fee2e2',color:'#991b1b'}">{{s.status || 'Clear'}}</span></td>
+                <td>0</td><td>0</td>
+                <td>
+                  <div style="display:flex;gap:0.5rem">
+                    <button type="button" class="btn btn-outline" style="padding:0.3rem 0.75rem;font-size:0.75rem" ng-click="restrictStudent(s.id)">Restrict</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <footer style="display:flex;justify-content:space-between;align-items:center;margin-top:1rem;font-size:0.85rem;color:#6b7280">
+            <span>Showing 1 to 4 of 1,248 entries</span>
+            <nav class="pagination" aria-label="Student table pagination">
+              <a href="#" aria-label="Previous">&lsaquo;</a>
+              <span class="current">1</span>
+              <a href="#">2</a>
+              <a href="#">3</a>
+              <a href="#">...</a>
+              <a href="#" aria-label="Next">&rsaquo;</a>
+            </nav>
+          </footer>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Filter Modal -->
+  <div class="modal-overlay" id="filterModal" role="dialog" aria-modal="true" aria-labelledby="filter-title">
+    <div class="modal">
+      <h2 id="filter-title">Filter Students</h2>
+      <div class="field-wrap" style="margin-bottom:1rem">
+        <label for="filterDept">Department</label>
+        <select id="filterDept" ng-model="filters.department" style="width:100%;padding:0.55rem;border:1px solid #e5e7eb;border-radius:8px;font-family:inherit">
+          <option value="">All Departments</option>
+          <option>Mechanical Eng.</option>
+          <option>Biotechnology</option>
+          <option>Chemistry</option>
+          <option>Physics</option>
+          <option>Computer Science</option>
+        </select>
+      </div>
+      <div class="field-wrap" style="margin-bottom:1rem">
+        <label for="filterStatus">Status</label>
+        <select id="filterStatus" ng-model="filters.status" style="width:100%;padding:0.55rem;border:1px solid #e5e7eb;border-radius:8px;font-family:inherit">
+          <option value="">All Statuses</option>
+          <option>Clear</option>
+          <option>Warning</option>
+          <option>Restricted</option>
+        </select>
+      </div>
+      <div style="display:flex;gap:0.5rem;margin-top:1rem">
+        <button type="button" class="btn btn-primary" onclick="applyFilter()" data-close-modal>Apply</button>
+        <button type="button" class="btn btn-outline" data-close-modal>Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Student Modal -->
+  <div class="modal-overlay" id="addStudentModal" role="dialog" aria-modal="true" aria-labelledby="add-student-title">
+    <div class="modal">
+      <h2 id="add-student-title">Add New Student</h2>
+      <div ng-if="submitMsg" style="background:#d1fae5;color:#065f46;padding:0.75rem 1rem;border-radius:8px;margin-bottom:1rem;">âœ“ {{submitMsg}}</div>
+      <form novalidate ng-submit="submitAddStudent()">
+        <div class="field-wrap">
+          <label for="stuName">Full Name</label>
+          <input type="text" id="stuName" name="stuName" ng-model="newStudent.name" placeholder="e.g. John Smith" required>
+          <span class="validation-thumb"></span><span class="field-error"></span>
+        </div>
+        <div class="field-wrap">
+          <label for="stuId">Student ID</label>
+          <input type="text" id="stuId" name="stuId" ng-model="newStudent.id" placeholder="e.g. CS-1234" required>
+          <span class="validation-thumb"></span><span class="field-error"></span>
+        </div>
+        <div class="field-wrap">
+          <label for="stuDept">Department</label>
+          <input type="text" id="stuDept" name="stuDept" ng-model="newStudent.department" placeholder="e.g. Physics" required>
+          <span class="validation-thumb"></span><span class="field-error"></span>
+        </div>
+        <div style="display:flex;gap:0.5rem;margin-top:1rem">
+          <button type="submit" class="btn btn-primary">Add Student</button>
+          <button type="button" class="btn btn-outline" data-close-modal>Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- View Student Modal -->
+  <div class="modal-overlay" id="viewStudentModal" role="dialog" aria-modal="true" aria-labelledby="view-student-title">
+    <div class="modal" style="max-width:400px">
+      <h2 id="view-student-title">Student Profile</h2>
+      <div style="text-align:center;margin-bottom:1rem">
+        <img src="https://i.pravatar.cc/80?img=47" id="viewStudentAvatar" alt="Student" style="width:72px;height:72px;border-radius:50%;object-fit:cover;margin:0 auto 0.5rem">
+        <div style="font-weight:700;font-size:1.1rem" id="viewStudentName">â€”</div>
+        <div style="color:#6b7280;font-size:0.85rem">Engineering Department</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1rem">
+        <div style="background:#f8fafc;border-radius:8px;padding:0.75rem;text-align:center">
+          <div style="font-size:1.25rem;font-weight:700;color:#006d77">2</div>
+          <div style="font-size:0.75rem;color:#6b7280">Active Bookings</div>
+        </div>
+        <div style="background:#f8fafc;border-radius:8px;padding:0.75rem;text-align:center">
+          <div style="font-size:1.25rem;font-weight:700;color:#dc2626">0</div>
+          <div style="font-size:0.75rem;color:#6b7280">Overdue Items</div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-outline btn-block" data-close-modal>Close</button>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    LabTrackAuth.hydratePage();
+
+    /* Live search */
+    document.getElementById('studentSearch').addEventListener('input', function () {
+      var q = this.value.toLowerCase();
+      document.querySelectorAll('#studentTable tbody tr').forEach(function (row) {
+        row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    });
+
+    function viewStudent(name) {
+      document.getElementById('viewStudentName').textContent = name;
+      document.getElementById('viewStudentModal').classList.add('open');
+    }
+
+    function restrictStudent(btn) {
+      var row = btn.closest('tr');
+      var badge = row.querySelector('.badge');
+      badge.textContent = 'Restricted';
+      badge.className = 'badge';
+      badge.style.cssText = 'background:#fee2e2;color:#991b1b';
+      btn.textContent = 'Clear';
+      btn.className = 'btn btn-primary';
+      btn.style.cssText = 'padding:0.3rem 0.75rem;font-size:0.75rem';
+      btn.onclick = function () { clearStudent(btn); };
+    }
+
+    function clearStudent(btn) {
+      var row = btn.closest('tr');
+      var badge = row.querySelector('.badge');
+      badge.textContent = 'Clear';
+      badge.className = 'badge badge-active';
+      badge.removeAttribute('style');
+      btn.textContent = 'Restrict';
+      btn.className = 'btn btn-outline';
+      btn.style.cssText = 'padding:0.3rem 0.75rem;font-size:0.75rem;background:#fee2e2;color:#991b1b;border:none';
+      btn.onclick = function () { restrictStudent(btn); };
+    }
+
+    function applyFilter() {
+      var dept = document.getElementById('filterDept').value.toLowerCase();
+      var status = document.getElementById('filterStatus').value.toLowerCase();
+      document.querySelectorAll('#studentTable tbody tr').forEach(function (row) {
+        var txt = row.textContent.toLowerCase();
+        var deptMatch = !dept || txt.includes(dept);
+        var statusMatch = !status || txt.includes(status);
+        row.style.display = (deptMatch && statusMatch) ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
+

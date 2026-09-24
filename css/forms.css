@@ -1,0 +1,138 @@
+/* Form validation — CSS3 :valid / :invalid with thumb indicators */
+.field-wrap {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.field-wrap label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.35rem;
+}
+
+.field-wrap input,
+.field-wrap select,
+.field-wrap textarea {
+  width: 100%;
+  padding: 0.65rem 2.25rem 0.65rem 0.85rem;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.field-wrap input:focus,
+.field-wrap select:focus,
+.field-wrap textarea:focus {
+  outline: none;
+  border-color: #006d77;
+  box-shadow: 0 0 0 3px rgba(0, 109, 119, 0.15);
+}
+
+.field-wrap .validation-thumb {
+  position: absolute;
+  right: 10px;
+  bottom: 11px;
+  font-size: 0.85rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.field-wrap input:not(:placeholder-shown) + .validation-thumb,
+.field-wrap select.touched + .validation-thumb,
+.field-wrap textarea:not(:placeholder-shown) + .validation-thumb {
+  opacity: 1;
+}
+
+.field-wrap input:valid:not(:placeholder-shown) + .validation-thumb::before,
+.field-wrap select:valid.touched + .validation-thumb::before,
+.field-wrap textarea:valid:not(:placeholder-shown) + .validation-thumb::before {
+  content: "👍";
+}
+
+.field-wrap input:invalid:not(:placeholder-shown) + .validation-thumb::before,
+.field-wrap select:invalid.touched + .validation-thumb::before,
+.field-wrap textarea:invalid:not(:placeholder-shown) + .validation-thumb::before {
+  content: "👎";
+}
+
+.field-wrap input:valid:not(:placeholder-shown),
+.field-wrap select:valid.touched,
+.field-wrap textarea:valid:not(:placeholder-shown) {
+  border-color: #10b981;
+}
+
+.field-wrap input:invalid:not(:placeholder-shown),
+.field-wrap select:invalid.touched,
+.field-wrap textarea:invalid:not(:placeholder-shown) {
+  border-color: #ef4444;
+}
+
+.field-wrap .field-error {
+  font-size: 0.75rem;
+  color: #dc2626;
+  margin-top: 0.25rem;
+  min-height: 1rem;
+}
+
+.field-wrap.icon-left input {
+  padding-left: 2.5rem;
+}
+
+.field-icon {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  color: #9ca3af;
+  width: 18px;
+  height: 18px;
+}
+
+.field-wrap.icon-left .validation-thumb {
+  bottom: 11px;
+}
+
+@keyframes shake-invalid {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+.field-wrap.shake input,
+.field-wrap.shake select {
+  animation: shake-invalid 0.35s ease;
+}
+
+.form-message {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  display: none;
+}
+
+.form-message.show {
+  display: block;
+}
+
+.form-message.success {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.form-message.error {
+  background: #fee2e2;
+  color: #991b1b;
+}

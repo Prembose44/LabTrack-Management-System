@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LabTrack â€” My Bookings</title>
+  <script src="js/auth.js"></script>
+  <script>LabTrackAuth.guardStudent();</script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+  <script src="js/angular-app.js?v=2"></script>
+</head>
+<body ng-app="labTrackApp" ng-controller="MyBookingsController">
+  <div class="app-layout">
+    <aside class="app-sidebar">
+      <a href="dashboard.html" class="sidebar-brand"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#006d77" stroke-width="2"><circle cx="12" cy="14" r="3"/><path d="M12 2v4M8 6h8"/></svg><div><strong>LabTrack</strong><small>Management System</small></div></a>
+      <nav><ul class="sidebar-nav">
+        <li><a href="student-dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a></li>
+        <li><a href="equipment-catalog.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8"/></svg>Browse Equipment</a></li>
+        <li><a href="my-bookings.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/></svg>My Bookings</a></li>
+        <li><a href="bundle-booking.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>Bundle Booking</a></li>
+        <li><a href="notifications.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg>Notifications</a></li>
+        <li><a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a></li>
+        <li><a href="settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg>Settings</a></li>
+        <li><a href="login.html" onclick="LabTrackAuth.logout();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/></svg>Logout</a></li>
+      </ul></nav>
+    </aside>
+    <div class="app-main">
+      <header class="app-topbar">
+        <form class="topbar-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/></svg><input type="search" ng-model="searchQuery" placeholder="Search bookings..." aria-label="Search"></form>
+        <div class="topbar-actions"><div class="user-chip"><img src="https://i.pravatar.cc/72?img=12" alt=""><div><span data-auth-name>Student</span><small data-auth-role>Student</small></div></div></div>
+      </header>
+      <main class="app-content">
+        <h1 class="page-title">My Bookings</h1>
+
+        <!-- Tabs -->
+        <nav class="tabs" aria-label="Booking status">
+          <a href="#" ng-class="{active: activeTab==='all'}" ng-click="setTab('all');$event.preventDefault()">All ({{bookings.length}})</a>
+          <a href="#" ng-class="{active: activeTab==='active'}" ng-click="setTab('active');$event.preventDefault()">Active ({{countByStatus('Active')}})</a>
+          <a href="#" ng-class="{active: activeTab==='pending'}" ng-click="setTab('pending');$event.preventDefault()">Pending ({{countByStatus('Pending')}})</a>
+          <a href="#" ng-class="{active: activeTab==='completed'}" ng-click="setTab('completed');$event.preventDefault()">Completed ({{countByStatus('Completed')}})</a>
+          <a href="#" ng-class="{active: activeTab==='overdue'}" ng-click="setTab('overdue');$event.preventDefault()">Overdue ({{countByStatus('Overdue')}})</a>
+        </nav>
+
+        <!-- Success/Info message -->
+        <div ng-if="message" style="background:#d1fae5;color:#065f46;padding:0.75rem 1rem;border-radius:8px;margin-bottom:1rem;font-size:0.9rem;">{{message}}</div>
+
+        <!-- Booking list -->
+        <section aria-label="Bookings list">
+          <p ng-if="filteredBookings().length === 0" style="color:#6b7280;text-align:center;padding:2rem;">No bookings found in this category.</p>
+          <article class="card booking-list-card" ng-repeat="b in filteredBookings() | filter:searchQuery" ng-style="b.status==='Completed' ? {opacity:0.7} : {}">
+            <img ng-src="{{b.image}}" alt="{{b.name}}" style="width:80px;height:80px;object-fit:cover;border-radius:10px;flex-shrink:0;">
+            <div style="flex:1">
+              <h3 style="margin:0">{{b.name}}
+                <span class="badge"
+                  ng-style="b.status==='Active' ? {background:'#d1fae5',color:'#065f46'} :
+                             b.status==='Pending' ? {background:'#fef9c3',color:'#854d0e'} :
+                             b.status==='Overdue' ? {background:'#fee2e2',color:'#991b1b'} :
+                             {background:'#e5e7eb',color:'#6b7280'}">{{b.status}}</span>
+              </h3>
+              <p style="margin:0.25rem 0 0;color:#6b7280;font-size:0.85rem">Booked on {{b.bookedOn}} · Return by {{b.returnBy}}</p>
+              <p ng-if="b.extended" style="margin:0.1rem 0 0;color:#2563eb;font-size:0.8rem;">Extended by {{b.extendDays}} day(s). New return: {{b.newReturnBy}}</p>
+            </div>
+            <div style="display:flex;gap:0.5rem;align-items:center">
+              <button class="btn btn-outline" ng-if="b.status==='Active' || b.status==='Overdue'" ng-click="returnItem(b)">Return</button>
+              <button class="btn btn-primary" ng-if="b.status==='Active'" ng-click="extendItem(b)">Extend</button>
+              <button class="btn btn-outline" style="border-color:#ef4444;color:#ef4444" ng-if="b.status==='Pending'" ng-click="cancelItem(b)">Cancel</button>
+              <span style="color:#6b7280;font-size:0.8rem" ng-if="b.status==='Completed'">Returned</span>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="js/auth.js"></script>
+  <script src="js/validation.js"></script>
+  <script>LabTrackAuth.hydratePage();</script>
+</body>
+</html>
+

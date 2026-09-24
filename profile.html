@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LabTrack â€” Profile &amp; Settings</title>
+  <script src="js/auth.js"></script>
+  <script>LabTrackAuth.guardStudent();</script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.min.js"></script>
+  <script src="js/angular-app.js?v=2"></script>
+</head>
+<body ng-app="labTrackApp" ng-controller="ProfileController">
+  <div class="app-layout">
+    <aside class="app-sidebar">
+      <a href="dashboard.html" class="sidebar-brand"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#006d77" stroke-width="2"><circle cx="12" cy="14" r="3"/><path d="M12 2v4M8 6h8"/></svg><div><strong>LabTrack</strong><small>Management System</small></div></a>
+      <nav><ul class="sidebar-nav">
+        <li><a href="student-dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a></li>
+        <li><a href="equipment-catalog.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8"/></svg>Browse Equipment</a></li>
+        <li><a href="my-bookings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/></svg>My Bookings</a></li>
+        <li><a href="bundle-booking.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>Bundle Booking</a></li>
+        <li><a href="notifications.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg>Notifications</a></li>
+        <li><a href="profile.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a></li>
+        <li><a href="settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg>Settings</a></li>
+        <li><a href="login.html" onclick="LabTrackAuth.logout();return false;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/></svg>Logout</a></li>
+      </ul></nav>
+    </aside>
+    <div class="app-main">
+      <header class="app-topbar">
+        <h1 style="margin:0;font-size:1.25rem">Profile</h1>
+        <div class="topbar-actions"><button class="icon-btn" aria-label="Notifications"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg></button><img src="https://ui-avatars.com/api/?name=Student&background=006d77&color=fff&size=72" data-auth-avatar alt="" style="width:36px;height:36px;border-radius:50%"></div>
+      </header>
+      <main class="app-content">
+        <header><h2 class="page-title" style="font-size:1.5rem">Account Settings</h2><p class="page-sub">Manage your personal information, security preferences, and notifications.</p></header>
+        <div class="profile-layout">
+          <aside class="card" style="text-align:center">
+            <img class="avatar-lg" src="https://ui-avatars.com/api/?name=Student&background=006d77&color=fff&size=120" id="profileAvatar" alt="Profile Photo" data-auth-avatar>
+            <h3 style="margin:0" ng-bind="user.fullName">Arjun Kumar</h3>
+            <p style="color:#006d77;margin:0.25rem 0" ng-bind="user.title">Graduate Researcher</p>
+            <p style="font-size:0.85rem;color:#6b7280" ng-bind="user.department">Biomedical Engineering</p>
+            <hr style="border:none;border-top:1px solid #e5e7eb;margin:1rem 0">
+            <p style="font-size:0.75rem;color:#9ca3af;margin:0">ACCOUNT STATUS</p>
+            <span class="badge badge-active">Active</span>
+            <p style="font-size:0.75rem;color:#9ca3af;margin:1rem 0 0">JOIN DATE</p>
+            <p style="margin:0">Sep 2022</p>
+          </aside>
+          <section class="card">
+            <header style="margin-bottom:1.25rem"><h3 style="margin:0">Personal Information</h3><p style="margin:0.25rem 0 0;color:#6b7280;font-size:0.9rem">Update your basic profile details.</p></header>
+            <form data-validate="profile" novalidate>
+              <div class="form-message"></div>
+              <div class="form-grid-2">
+                <div class="field-wrap"><label for="fullName">Full Name</label><input type="text" id="fullName" name="fullName" ng-model="user.fullName" required pattern="[A-Za-z\s]+"><span class="validation-thumb"></span><span class="field-error"></span></div>
+                <div class="field-wrap"><label for="preferredName">Preferred Name</label><input type="text" id="preferredName" name="preferredName" ng-model="user.preferredName" required pattern="[A-Za-z\s]+"><span class="validation-thumb"></span><span class="field-error"></span></div>
+                <div class="field-wrap"><label for="city">City</label><input type="text" id="city" name="city" ng-model="user.city" required pattern="[A-Za-z\s]+"><span class="validation-thumb"></span><span class="field-error"></span></div>
+                <div class="field-wrap"><label for="address">Address</label><input type="text" id="address" name="address" ng-model="user.address" required><span class="validation-thumb"></span><span class="field-error"></span></div>
+                <div class="field-wrap"><label for="uniEmail">University Email</label><input type="email" id="uniEmail" name="uniEmail" ng-model="user.uniEmail" disabled><small style="color:#9ca3af">Contact IT to change university email.</small></div>
+                <div class="field-wrap"><label for="deptSelect">Department</label><select id="deptSelect" name="department" ng-model="user.department" required><option value="Biomedical Engineering">Biomedical Engineering</option><option value="Computer Science">Computer Science</option><option value="Physics">Physics</option></select><span class="validation-thumb"></span><span class="field-error"></span></div>
+              </div>
+              <footer style="text-align:right;margin-top:1rem"><button type="submit" class="btn btn-primary">Save Changes</button></footer>
+            </form>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="js/auth.js"></script>
+  <script src="js/validation.js"></script>
+  <script>LabTrackAuth.hydratePage();</script>
+</body>
+</html>
+
