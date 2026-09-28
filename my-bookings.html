@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -62,6 +62,15 @@
               </h3>
               <p style="margin:0.25rem 0 0;color:#6b7280;font-size:0.85rem">Booked on {{b.bookedOn}} · Return by {{b.returnBy}}</p>
               <p ng-if="b.extended" style="margin:0.1rem 0 0;color:#2563eb;font-size:0.8rem;">Extended by {{b.extendDays}} day(s). New return: {{b.newReturnBy}}</p>
+              <!-- Check-In banner (Option 2) — shown for Active bookings only -->
+              <div ng-if="b.status==='Active' && !b.checkedIn"
+                   style="margin-top:0.5rem;background:#fef9c3;border:1px solid #fde047;border-radius:6px;padding:0.4rem 0.75rem;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap">
+                <span style="font-size:0.78rem;color:#78350f;flex:1">⏰ Check-in required to keep this booking active. No-shows auto-release the slot.</span>
+                <button class="btn btn-primary" style="padding:0.25rem 0.65rem;font-size:0.75rem;flex-shrink:0"
+                        ng-click="checkIn(b)">Check In ✓</button>
+              </div>
+              <p ng-if="b.status==='Active' && b.checkedIn"
+                 style="margin:0.5rem 0 0;font-size:0.78rem;color:#059669">✅ Checked in · Slot confirmed</p>
             </div>
             <div style="display:flex;gap:0.5rem;align-items:center">
               <button class="btn btn-outline" ng-if="b.status==='Active' || b.status==='Overdue'" ng-click="returnItem(b)">Return</button>

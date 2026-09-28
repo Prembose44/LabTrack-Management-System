@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -175,6 +175,19 @@
                 <header><span>Incubators</span><span>88%</span></header>
                 <div class="progress-bar"><span style="width:88%;background:#83c5be"></span></div>
               </div>
+            </section>
+
+            <!-- Quota Override (Option 3) -->
+            <section class="card" style="margin-top:1rem">
+              <h3 style="margin:0 0 0.75rem;font-size:0.95rem">⚡ Quota Override</h3>
+              <p style="margin:0 0 0.75rem;font-size:0.82rem;color:#6b7280">Grant a student extra weekly bookings for special projects.</p>
+              <div class="field-wrap" style="margin-bottom:0.5rem">
+                <label for="boostStudent" style="font-size:0.82rem">Student Email</label>
+                <input type="email" id="boostStudent" ng-model="boostEmail"
+                       placeholder="student@uni.edu" style="font-size:0.85rem">
+              </div>
+              <button class="btn btn-primary btn-block" ng-click="grantBoost()" style="font-size:0.85rem">Grant +2 Boost</button>
+              <p ng-if="boostMsg" style="margin:0.5rem 0 0;font-size:0.82rem;color:#059669">{{boostMsg}}</p>
             </section>
           </aside>
         </div>

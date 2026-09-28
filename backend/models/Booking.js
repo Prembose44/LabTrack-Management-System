@@ -1,4 +1,4 @@
-﻿const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 /*
  * PERSON 3 TABLE: bookings
@@ -8,17 +8,20 @@
 const BookingSchema = new mongoose.Schema({
     user:         { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     equipment:    { type: mongoose.Schema.Types.ObjectId, ref: "Equipment", required: true },
-    status:       { type: String,
-                    enum: ["pending","active","completed","overdue","cancelled"],
-                    default: "pending" },
-    bookedOn:     { type: Date, default: Date.now },
-    returnBy:     { type: Date, required: true },
-    returnedOn:   { type: Date, default: null },
-    extended:     { type: Boolean, default: false },
-    extendDays:   { type: Number, default: 0 },
-    newReturnBy:  { type: Date, default: null },
-    approvedBy:   { type: String, default: null },
-    notes:        { type: String, default: "" }
+    status:           { type: String,
+                        enum: ["pending","active","completed","overdue","cancelled","waitlisted"],
+                        default: "pending" },
+    bookedOn:         { type: Date, default: Date.now },
+    returnBy:         { type: Date, required: true },
+    returnedOn:       { type: Date, default: null },
+    extended:         { type: Boolean, default: false },
+    extendDays:       { type: Number, default: 0 },
+    newReturnBy:      { type: Date, default: null },
+    approvedBy:       { type: String, default: null },
+    notes:            { type: String, default: "" },
+    waitlistPosition: { type: Number, default: null },
+    checkedIn:        { type: Boolean, default: false },
+    checkInTime:      { type: Date, default: null }
 }, { timestamps: true });
 
 module.exports = mongoose.model("Booking", BookingSchema);

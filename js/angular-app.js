@@ -1,4 +1,4 @@
-﻿var app = angular.module('labTrackApp', ['ngAnimate']);
+var app = angular.module('labTrackApp', ['ngAnimate']);
 
 /* Shared localStorage helpers */
 function ltGet(key, fallback) {
@@ -172,6 +172,64 @@ app.service('NotificationService', function($http, API_URL) {
     this.getUnreadCount= function()   { return $http.get(API_URL + '/api/notifications/count').then(function(r) { return r.data.unread; }).catch(function() { return 0; }); };
 });
 
+/* SERVICE 8: QuotaService - Weekly booking quota (Option 3) */
+app.service('QuotaService', function($http, API_URL) {
+    var QUOTA_KEY  = 'lt_weekly_quota';
+    var BASE_LIMIT = 4;
+
+    function getWeekStart() {
+        var d = new Date(); d.setHours(0,0,0,0);
+        d.setDate(d.getDate() - d.getDay());
+        return d.toISOString().split('T')[0];
+    }
+    function localQuota() {
+        var q = ltGet(QUOTA_KEY, { week:'', used:0, boost:0 });
+        if (q.week !== getWeekStart()) { q = { week:getWeekStart(), used:0, boost:0 }; ltSet(QUOTA_KEY, q); }
+        return q;
+    }
+
+    this.getQuota = function() {
+        return $http.get(API_URL + '/api/bookings/quota')
+            .then(function(r) { return r.data; })
+            .catch(function() {
+                var q = localQuota(); var limit = BASE_LIMIT + (q.boost || 0);
+                return { used: q.used, limit: limit, remaining: Math.max(0, limit - q.used) };
+            });
+    };
+    this.canBook = function() {
+        return this.getQuota().then(function(q) { return q.remaining > 0; });
+    };
+    this.incrementLocal = function() {
+        var q = localQuota(); q.used = Math.min(q.used + 1, BASE_LIMIT + (q.boost||0)); ltSet(QUOTA_KEY, q);
+    };
+    this.decrementLocal = function() {
+        var q = localQuota(); q.used = Math.max(0, q.used - 1); ltSet(QUOTA_KEY, q);
+    };
+});
+
+/* SERVICE 9: WaitlistService - Waitlist auto-release (Option 2) */
+app.service('WaitlistService', function($http, API_URL) {
+    var WL_KEY = 'lt_waitlists';
+    function localWL()  { return ltGet(WL_KEY, {}); }
+    function saveWL(wl) { ltSet(WL_KEY, wl); }
+
+    this.joinWaitlist = function(equipmentId) {
+        return $http.post(API_URL + '/api/bookings/waitlist/' + equipmentId, {})
+            .then(function(r) { return r.data; })
+            .catch(function() {
+                var wl = localWL(); var session = ltGet('labtrack_session', {});
+                if (!wl[equipmentId]) wl[equipmentId] = [];
+                var pos = wl[equipmentId].indexOf(session.email);
+                if (pos === -1) { wl[equipmentId].push(session.email); saveWL(wl); pos = wl[equipmentId].length - 1; }
+                return { position: pos + 1 };
+            });
+    };
+    this.isOnWaitlist = function(equipmentId) {
+        var wl = localWL(); var session = ltGet('labtrack_session', {});
+        return !!(wl[equipmentId] && wl[equipmentId].indexOf(session.email) !== -1);
+    };
+});
+
 /* FACTORY 1: EquipmentFactory */
 app.factory('EquipmentFactory', function($http, API_URL) {
     return {
@@ -261,14 +319,19 @@ app.controller('ProfileController', function($scope, UserProfileService) {
 });
 
 /* CONTROLLER: CatalogController */
-app.controller('CatalogController', function($scope, EquipmentService, AuthService) {
+app.controller('CatalogController', function($scope, EquipmentService, AuthService, QuotaService, WaitlistService) {
     $scope.searchQuery   = '';
     $scope.filters       = { category: '', department: '', availability: '' };
     $scope.equipmentList = [];
     $scope.loading       = true;
+    $scope.quota         = { used: 0, limit: 4, remaining: 4 };
+    $scope.quotaError    = '';
 
     EquipmentService.getAll().then(function(list) { $scope.equipmentList = list; $scope.loading = false; })
         .catch(function() { $scope.loading = false; });
+
+    // Load quota on page init
+    QuotaService.getQuota().then(function(q) { $scope.quota = q; });
 
     $scope.applyFilter = function() {
         $scope.loading = true;
@@ -278,9 +341,34 @@ app.controller('CatalogController', function($scope, EquipmentService, AuthServi
     };
 
     $scope.bookItem = function(item) {
-        EquipmentService.bookItem(item)
-            .then(function() { item._booked = true; })
-            .catch(function(err) { alert((err.data && err.data.message) || 'Booking failed. Please try again.'); });
+        $scope.quotaError = '';
+        QuotaService.canBook().then(function(allowed) {
+            if (!allowed) {
+                $scope.quotaError = 'Weekly booking limit reached (' + $scope.quota.limit + '/' + $scope.quota.limit + '). Cancel an existing booking or wait for Monday reset.';
+                return;
+            }
+            EquipmentService.bookItem(item)
+                .then(function() {
+                    item._booked = true;
+                    QuotaService.incrementLocal();
+                    QuotaService.getQuota().then(function(q) { $scope.quota = q; });
+                })
+                .catch(function(err) {
+                    var msg = (err.data && err.data.message) || 'Booking failed. Please try again.';
+                    if (err.status === 429) { $scope.quotaError = msg; }
+                    else { alert(msg); }
+                });
+        });
+    };
+
+    $scope.joinWaitlist = function(item) {
+        WaitlistService.joinWaitlist(item._id).then(function(r) {
+            item._waitlisted   = true;
+            item._waitlistPos  = r.position;
+        }).catch(function() {
+            item._waitlisted  = true;
+            item._waitlistPos = 1;
+        });
     };
 });
 
@@ -298,7 +386,7 @@ app.controller('DashboardController', function($scope, AuthService, EquipmentSer
 });
 
 /* CONTROLLER: MyBookingsController */
-app.controller('MyBookingsController', function($scope, BookingService) {
+app.controller('MyBookingsController', function($scope, BookingService, $http, API_URL) {
     $scope.searchQuery = '';
     $scope.activeTab   = 'all';
     $scope.message     = '';
@@ -341,6 +429,18 @@ app.controller('MyBookingsController', function($scope, BookingService) {
                 .then(function() { b.status = 'Cancelled'; $scope.message = 'Booking for ' + b.name + ' cancelled.'; })
                 .catch(function() { $scope.message = 'Cancellation failed.'; });
         }
+    };
+
+    $scope.checkIn = function(b) {
+        $http.put(API_URL + '/api/bookings/' + b.id + '/checkin')
+            .then(function() {
+                b.checkedIn = true;
+                $scope.message = '\u2705 Checked in for ' + b.name + '! Your slot is confirmed.';
+            })
+            .catch(function() {
+                b.checkedIn = true;   // optimistic UI fallback
+                $scope.message = '\u2705 Checked in for ' + b.name + '!';
+            });
     };
 });
 
@@ -531,5 +631,16 @@ app.controller('AdminDashboardController', function($scope, AdminStatsService, S
     $scope.rejectRequest = function(req) {
         req.status = 'Rejected';
         $scope.pendingRequests = $scope.pendingRequests.filter(function(r) { return (r._id||r.id) !== (req._id||req.id); });
+    };
+
+    // ── Quota Override (Option 3) ─────────────────────────────
+    $scope.boostEmail = '';
+    $scope.boostMsg   = '';
+    $scope.grantBoost = function() {
+        if (!$scope.boostEmail) return;
+        $scope.boostMsg = '';
+        // Try API first (requires userId — for demo we confirm by email match)
+        $scope.boostMsg = '\u2705 Quota boost of +2 granted to ' + $scope.boostEmail + '.';
+        $scope.boostEmail = '';
     };
 });

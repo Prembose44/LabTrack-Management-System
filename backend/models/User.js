@@ -1,4 +1,4 @@
-﻿const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const bcrypt   = require("bcryptjs");
 
 /*
@@ -14,8 +14,11 @@ const UserSchema = new mongoose.Schema({
     department:   { type: String, default: "" },
     studentId:    { type: String, default: "" },
     avatar:       { type: String, default: "" },
-    status:       { type: String, enum: ["active", "restricted"], default: "active" },
-    createdAt:    { type: Date, default: Date.now }
+    status:          { type: String, enum: ["active", "restricted"], default: "active" },
+    weeklyQuotaUsed: { type: Number, default: 0 },
+    quotaWeekStart:  { type: Date,   default: null },
+    quotaBoost:      { type: Number, default: 0 },
+    createdAt:       { type: Date, default: Date.now }
 }, { timestamps: true });
 
 // Hash password before saving
