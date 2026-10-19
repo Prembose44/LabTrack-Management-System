@@ -1,0 +1,781 @@
+=== UG THESIS FORMAT PDF ===
+--- Page 1 ---
+ 
+ANNA UNIVERSITY :: CHENNAI 600 025  
+ 
+ 
+ 
+ 
+FORMAT   FOR   PREPARATION   OF   PROJECT   REPORT  
+ 
+FOR 
+ 
+B.E. / B. TECH. / B. ARCH.  
+ 
+ 
+ 
+1. ARRANGEMENT OF CONTENTS:  
+ 
+The sequence in which the project report material should be arranged and bound should be as 
+follows: 
+ 
+ 
+1. Cover Page & Title Page 
+2. Bonafide Certificate 
+3. Abstract 
+4. Table of Contents 
+5. List of Tables 
+6. List of Figures 
+7. List of Symbols, Abbreviations and Nomenclature  
+8. Chapters 
+9. Appendices 
+10. References 
+ 
+The table and figures shall be introduced in the appropriate places.  
+ 
+2. PAGE DIMENSION AND BINDING SPECIFICATIONS:  
+ 
+The dimension of the project report should be in A4 size.   The project report should be 
+bound using flexible cover of the thick white art paper.  The cover should be  printed in 
+black letters and the text for printing should be identical.  
+ 
+3. PREPARATION FORMAT:  
+ 
+3.1 Cover Page & Title Page – A specimen copy of the Cover page & Title page of the   project   
+report are given in Appendix 1. 
+ 
+3.2 Bonafide Certificate – The Bonafide Certificate shall be in double line spac ing using Font 
+Style Times New Roman and Font Size 14, as per the format in Appendix 2. 
+  
+ The certificate shall carry the supervisor’s signature and shall be followed by the supervisor’s 
+name, academic designation (not any other responsibilities of admini strative nature), 
+--- Page 2 ---
+department and full address of the institution where the supervisor has guided the student. 
+The term ‘SUPERVISOR’ must be typed in capital letters between the supervisor’s name 
+and academic designation. 
+ 
+3.3 Abstract – Abstract should be one page synopsis of the project report typed double line 
+spacing, Font Style Times New Roman and Font Size 14.  
+ 
+3.4 Table of Contents – The table of contents should list all material following it as well as any 
+material which precedes it. The title page a nd Bonafide Certificate will not find a place 
+among the items listed in the Table of Contents but the page numbers of which are in lower 
+case Roman letters. One and a half spacing should be adopted for typing the matter under this 
+head. A specimen copy of the Table of Contents of the project report is given in Appendix 3. 
+ 
+3.5 List of Tables – The list should use exactly the same captions as they appear above the 
+tables in the text. One and a half spacing should be adopted for typing the matter under this 
+head. 
+ 
+3.6 List of Figures – The list should use exactly the same captions as they appear below the 
+figures in the text. One and a half spacing should be adopted for typing the matter under this 
+head. 
+ 
+3.7 List of Symbols, Abbreviations and Nomenclature – One and a half spacing should be 
+adopted or typing the matter under this head. Standard symbols, abbreviations etc. should be 
+used. 
+ 
+3.8 Chapters  – The chapters may be broadly divided into 3 parts  (i)  Introductory  chapter,   (ii) 
+Chapters developing the main theme of the project work  (iii) and Conclusion.  
+ 
+ The main text will be divided into several chapters and each chapter may be further divided 
+into several divisions and sub-divisions. 
+ 
+ Each chapter should be given an appropriate title.  
+ Tables and fi gures in a chapter should be placed in the immediate vicinity of the 
+reference where they are cited.  
+ 
+ Footnotes should be used sparingly. They should be typed single space and placed 
+directly underneath in the very same page, which refers to the material t hey annotate. 
+ 
+3.9 Appendices – Appendices are provided to give supplementary information, which is 
+included in the main text may serve as a distraction and cloud the central theme.  
+ 
+ Appendices should be numbered using Arabic numerals, e.g. Appendix 1, App endix 
+2, etc. 
+ Appendices, Tables and References appearing in appendices should be numbered and 
+referred to at appropriate places just as in the case of chapters.  
+ 
+ Appendices shall carry the title of the work reported and the same title shall be made 
+in the contents page also. 
+--- Page 3 ---
+ 
+ 
+3.10 List of References –The listing of references should be typed 4 spaces below the heading 
+“REFERENCES” in alphabetical order in single spacing left – justified. The reference 
+material should be listed in the alphabetical order of  the first author. The name of the 
+author/authors should be immediately followed by the year and other details.  
+ 
+A typical illustrative list given below relates to the citation example quoted above.  
+ 
+ 
+REFERENCES 
+ 
+ 
+ 
+ 
+1. Ariponnammal, S. and Natarajan, S. ( 1994) ‘Transport Phonomena of Sm Sel – X 
+Asx’, Pramana – Journal of Physics Vol.42, No.1, pp.421 -425. 
+ 
+2. Barnard, R.W. and Kellogg, C. (1980) ‘Applications of Convolution Operators to 
+Problems in Univalent Function Theory’, Michigan Mach, J., Vol.27, pp.8 1–94. 
+ 
+3. Shin, K.G. and Mckay, N.D. (1984) ‘Open Loop Minimum Time Control of 
+Mechanical Manipulations and its Applications’, Proc.Amer.Contr.Conf., San Diego, 
+CA, pp. 1231-1236. 
+ 
+ 
+3.10.1 Table and figures - By the word Table, is meant tabulated numerical data i n the body of the 
+project report as well as in the appendices.  All other non -verbal materials used in the body of 
+the project work and appendices such as charts, graphs, maps, photographs and diagrams 
+may be designated as figures. 
+ 
+ 
+4. TYPING INSTRUCTIONS: 
+                                                                                                                                                                                                                                                                                                                                                                                                                    
+ The impression on the typed copies should be black in colour.  
+ 
+ One and a half spacing should be used fo r typing the general text. The general text shall be 
+typed in the Font style ‘Times New Roman’ and Font size 14.  
+   
+ 
+* * * * * 
+     
+ 
+ 
+ 
+ 
+ 
+ 
+--- Page 4 ---
+ 
+APPENDIX 1 
+(A typical Specimen of Cover Page & Title Page)  
+<Font Style Times New Roman – Bold> 
+ 
+ 
+TITLE OF PROJECT REPORT 
+<Font Size 18><1.5 line spacing>  
+ 
+A PROJECT REPORT 
+<Font Size 14> 
+ 
+Submitted by  
+<Font Size 14><Italic> 
+ 
+NAME OF THE CANDIDATE(S)  
+<Font Size 16> 
+ 
+ 
+in partial fulfillment for the award of the degree 
+ 
+of  
+ 
+<Font Size 14><1.5 line spacing><Italic>  
+ 
+NAME OF THE DEGREE  
+<Font Size 16> 
+ 
+IN 
+ 
+BRANCH OF STUDY 
+<Font Size 14> 
+ 
+ 
+NAME OF THE COLLEGE 
+<Font Size 14> 
+ 
+ 
+ANNA UNIVERSITY : CHENNAI 600 025  
+<Font Size 16><1.5 line spacing>  
+ 
+MONTH & YEAR 
+<Font Size 14> 
+--- Page 5 ---
+ 
+SPECIMEN 
+ 
+ 
+SOME PERFORMANCE ASPECTS CONSIDERATIONS OF 
+A CLASS OF ARTIFICIAL NEURAL NETWORK 
+ 
+ 
+A PROJECT REPORT 
+ 
+ 
+Submitted by  
+ 
+SANDHYA. A 
+ 
+GAYATHRI.R 
+ 
+ 
+ 
+in  partial  fulfillment  for  the  award  of  the  degree 
+ 
+of  
+ 
+BACHELOR OF ENGINEERING  
+ 
+in 
+ 
+ INSTRUMENTATION AND CONTROL ENGINEERING 
+ 
+ 
+ 
+ 
+XXX ENGINEERING COLLEGE, KANCHEEPURAM 
+ 
+ 
+ANNA UNIVERSITY:: CHENNAI 600 025  
+ 
+ 
+MAY 2005 
+ 
+ 
+--- Page 6 ---
+ 
+ 
+ 
+ 
+APPENDIX 2 
+(A typical specimen of Bonafide Certificate)  
+<Font Style Times New Roman>  
+ 
+ 
+ANNA UNIVERSITY : CHENNAI 600 025 
+<Font Style Times New Roman – size -18> 
+ 
+ 
+ 
+BONAFIDE CERTIFICATE  
+<Font Style Times New Roman – size -16> 
+ 
+<Font Style Times New Roman – size -14> 
+ 
+Certified that this project report “……….TITLE OF THE PROJECT……………..” 
+is the bonafide work of “ …………..NAME OF THE CANDIDATE(S).…………”                                            
+who carried out the project work under my supervision.  
+ 
+<<Signature of the Head of the Department>>                       <<Signature of the Supervisor>>  
+  SIGNATURE         SIGNATURE 
+ 
+  <<Name>>        <<Name>>    
+ HEAD OF THE DEPARTMENT       SUPERVISOR 
+     
+                                                          <<Academic Designation>>  
+ 
+<<Department>>                  <<Department>> 
+ 
+<<Full address of the Dept & College >>              <<Full address of the Dept & College >>  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+--- Page 7 ---
+APPENDIX 3 
+(A typical specimen of table of contents)  
+<Font Style Times New Roman>  
+ 
+ 
+TABLE OF CONTENTS 
+ 
+ 
+CHAPTER NO.    TITLE    PAGE NO. 
+ 
+                                               ABSTRACT                                                                          iii            
+                                               LIST OF TABLE                                                                xvi  
+                                               LIST OF FIGURES                                                           xviii 
+                                               LIST OF SYMBOLS                                                        xxvii  
+ 
+ 
+         1.                                 INTRODUCTION                                                                  1 
+ 
+                                        1.1 GENERAL                                                                 1  
+                                              1.2         . . . .  . . . . . . . . .                                                          2 
+            1.2.1     General                                                       5  
+                                    1.2.2     . . . . . . . . . . .                                                12  
+                                                  1.2.2.1 General                                            19  
+                                                                          1.2.2.2  . . . . . . . . . .                                     25       
+                                      1.2.2.3  . . . . . . . . . .                                     29  
+                        1.2.3    . . . . . . . . . . . .                                                30  
+                                            1.3 . . . . . . . . . . .. . . . . . .                                                 45  
+                                            1.4 . . . . . . . . . . . . . . . . . .                                                58  
+          2.                                 LITERATURE REVIEW                                                     69 
+                                      2.1 GENERAL                                                                 75  
+2.2 . . . . . . . . . .                                                     99  
+2.2       …………….                                                 100  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+=== LABTRACK FINAL PDF ===
+--- Slide 1 ---
+preencoded.png
+FULL-STACK WEB APPLICATION · 2026
+LabTrack
+Lab Equipment Management System
+Smart Lab Equipment Booking · Auto-Release Waitlist · Fair Use Quota Engine
+Angular.js · Node.js · Express · MongoDB | Team of 3
+--- Slide 2 ---
+preencoded.png
+Agenda
+Presentation overview
+01
+What Is LabTrack?
+Goals & key features
+02
+Existing Apps
+Market survey
+03
+Faults in Existing Apps
+Gap analysis
+04
+Our Novel Solutions
+Waitlist + quota engine
+05
+Stakeholders
+Users and benefits
+06
+Demo Screenshots
+UI walkthrough
+07
+Angular & Node.js Concepts
+Technical breakdown
+08
+Conclusion
+Summary & future scope
+--- Slide 3 ---
+preencoded.png
+What Is LabTrack?
+A college-scale, role-based web application that digitizes lab equipment borrowing end-to-end — from request to return.
+Core Features
+• Equipment catalog with search, filter & bundle booking
+• Full lifecycle: Pending → Approved → Active → 
+Returned
+• Maintenance tracking & damage reporting
+• In-app notifications with unread badge count
+• Lab calendar for slot availability
+• Novel: Smart Waitlist + Auto-Release
+• Novel: Fair Use Quota Engine
+Platform Overview
+Angular.js SPA
+15 screens, full SPA 
+coverage
+Node.js REST API
+JWT-secured, role-
+based endpoints
+MongoDB
+Flexible schema for bookings & users
+--- Slide 4 ---
+preencoded.png
+Existing Apps
+Surveyed tools relevant to lab equipment booking — across institutional and general-purpose platforms.
+WebCheckout
+Edu / Institutional
+US-based reservation & asset tracking. Role-based circulation 
+with booking reminders.
+BINUS Lab
+Edu / Institutional
+Indonesia's internal borrowing system. Form-based requests with 
+admin approval workflow.
+UMS Loan
+Edu / Institutional
+Malaysia's equipment loan portal. Basic approval flow; limited 
+reporting capability.
+Lend Engine
+Open-Source
+Self-serve reservations for libraries & equipment. Email 
+reminders, membership management.
+Itefy
+SaaS
+EU-focused asset tracking for schools. Barcode scanning, 
+mobile-friendly. No booking approval flow.
+Hector
+SaaS
+Business-oriented custody tracking. Strong audit trail. No student 
+or department layer.
+--- Slide 5 ---
+preencoded.png
+Faults in Existing Apps
+Research-confirmed gaps — each directly addressed by a LabTrack feature.
+Ghost Bookings — No Auto-Release
+15–30% of booked slots go unused. Equipment sits idle 
+while marked "Booked." No system detects no-shows or 
+auto-releases blocked time.
+Solved: Smart Waitlist + Check-In + Auto-Release
+No Fair-Use Quota — Resource Hoarding
+Students book high-demand equipment for consecutive 
+days, monopolizing shared resources. No system 
+enforces per-student weekly limits.
+Solved: Per-Student Weekly Quota Engine
+Generic Tools — Not College-Lab Fit
+Business asset tools lack student-ID binding, 
+department access, admin approval workflows, and 
+academic-calendar alignment.
+Solved: Student + Admin role-based SPA
+Maintenance-Booking Disconnect
+Booking and maintenance are separate. Admins must 
+manually toggle availability — students arrive to find 
+broken equipment.
+Solved: Maintenance Tracking + Status-Blocking
+--- Slide 6 ---
+preencoded.png
+NOVEL FEATURE 1
+Smart Waitlist + Auto-Release
+Solving ghost bookings and no-show slots. Research shows 15–30% of booked lab slots go unused — equipment sits idle while other students are turned away.
+Slot Auto-
+ReleasesNo Check-InJoins WaitlistSlot FullStudent Books
+Frontend (Angular.js) · ~1 hr
+• WaitlistService.joinWaitlist() — POST /api/bookings/waitlist/:id
+• 'Join Waitlist' button shows live position
+• Optimistic UI: instant checkedIn = true feedback
+Backend (Node.js) · ~1.5 hrs
+• node-cron scans every 5 min for no checkInAt past start+15min
+• Auto-release frees slot, notifies next waitlist entry
+• Admin sees no-show flag on student profile
+--- Slide 7 ---
+preencoded.png
+NOVEL FEATURE 2
+Fair Use Quota Engine
+Solving resource hoarding. One student booking equipment for 5 consecutive days "just in case" blocks everyone else. No 
+college-scale app enforces per-student booking limits.
+How It Works
+• Max 4 active bookings per student per week — resets 
+every Monday
+• QuotaService.canBook() checks limit before every 
+booking attempt
+• HTTP 429 returned if limit exceeded — inline error, no 
+popup
+• Admin can grant +2 quota boost via dashboard
+Student Dashboard View
+Weekly Quota: 2 / 
+4 used
+2 slots remaining this 
+week
+HTTP 429 on 
+Exceed
+Inline error — no 
+alert(), no disruption
+--- Slide 8 ---
+preencoded.png
+Stakeholders
+Who uses LabTrack and what value they receive
+Students
+• Browse catalog, book bundles, join waitlist
+• Check-in within 15 min, track quota usage
+• Receive real-time approval & change 
+notifications
+Lab Administrator
+• Approve/reject bookings, manage equipment & 
+students
+• Track maintenance, generate utilization reports
+• Grant quota boosts, monitor no-show rates
+Maintenance Staff
+• Receive damage reports instantly
+• Update repair status, track uptime %
+• Mark equipment available after repair
+College Institution
+• Reduced damage through accountability trail
+• Data-driven procurement & budget planning
+• Full audit trail for compliance
+--- Slide 9 ---
+preencoded.png
+Team Contributions
+Individual modules, Angular.js concepts & Node.js/Express responsibilities
+Prem Bose S S
+ADMIN MODULE
+Pages: Admin Dashboard, Equipment 
+Management, Booking Reports, 
+Maintenance Tracking, Student 
+Management
+Angular.js: Services & Controllers for 
+admin stats, equipment CRUD, student 
+management via $http & ng-repeat
+Node.js: REST routes for reports, 
+students, maintenance & booking 
+approval. JWT middleware guards admin 
+endpoints.
+Santhosh Karthick M
+CATALOG & FEATURES
+Pages: Equipment Catalog, Equipment 
+Detail, Bundle Booking, Lab Calendar, My 
+Bookings, Notifications
+Angular.js: CatalogController with 
+waitlist, check-in, quota UI; optimistic 
+feedback patterns
+Node.js: Booking lifecycle endpoints, 
+waitlist logic, quota engine, node-cron 
+auto-release job
+Alan Christ A
+AUTH & STUDENT CORE
+Pages: Landing Page, Login, Register, 
+Student Dashboard, Profile & Settings
+Angular.js: AuthService with JWT 
+storage, HTTP Interceptor to auto-attach 
+Bearer token, booking actions
+Node.js: Auth routes using bcryptjs + 
+JWT, student booking view, cancel, 
+extend & check-in endpoints
+--- Slide 10 ---
+preencoded.png
+Demo Screenshots — Core Modules
+Notifications
+
+--- Slide 11 ---
+Demo Screenshots
+Landing Page
+index.html  |  Person 2
+Student Dashboard
+student-dashboard.html  
+|  Person 2
+ Equipment Catalog equipment-catalog.html  |  Person 3
+My Bookings
+ Equipment Management
+ Maintenance Tracking
+maintenance.html  |  
+Person 1
+
+--- Slide 12 ---
+Demo Screenshots (cont.)
+Notifications
+notifications.html  |  
+Person 3
+ Lab Calendar
+ Booking Reports booking-reports.html  |  
+Person 1
+Bundle Booking
+ Student Management
+student-
+management.html  |  
+Person 1
+Profile & Settings
+profile.html  |  Person 3
+
+--- Slide 13 ---
+preencoded.png
+Conclusion & Future Scope
+LabTrack — digitizing college lab management, one booking at a time.
+What LabTrack Delivers
+• Full-stack SPA — Angular.js + Node.js + MongoDB
+• Role-based access: Admin dashboard + Student portal
+• Complete booking lifecycle with admin approval flow
+• Bundle booking — multi-item kits in one request
+• Integrated maintenance tracking & damage reporting
+• JWT-secured auth with role-based route guards
+• Novel: Smart Waitlist + 15-min Auto-Release
+• Novel: Per-Student Fair Use Quota Engine
+• Real-time in-app notifications + lab calendar
+• Unit tested with Jest + UI tested with Selenium
+Future Scope
+QR Code Check-In
+Physical scan at equipment for frictionless check-in
+Email / SMS Alerts
+Push notifications outside the app for overdue items
+PWA / Mobile App
+Offline-capable progressive web app for mobile
+Predictive Maintenance
+ML model to flag equipment for service based on usage
+IoT Integration
+Smart lock/sensor auto-confirms physical equipment pickup
+Analytics Dashboard
+Utilization heatmaps, peak-demand forecasting per lab
+Multi-Lab Support
+Campus-wide deployment across different lab locations
+eNur / LMS Integration
+Sync bookings with course schedule & timetable
+
+=== SAMPLE REPORT DOCX ===
+[Normal] DISASTER VOLUNTEERING NETWORK: A WEB-BASED PLATFORM FOR COORDINATING VOLUNTEERS, NGOs AND DISASTER-RELIEF TASKS
+[Normal] A PROJECT REPORT
+[Normal] Submitted by
+[Normal] [NAME OF THE CANDIDATE(S) AND REGISTER NO.]
+[Normal] in partial fulfillment for the award of the degree
+[Normal] of
+[Normal] BACHELOR OF ENGINEERING / BACHELOR OF TECHNOLOGY
+[Normal] IN
+[Normal] [BRANCH OF STUDY]
+[Normal] [NAME OF THE COLLEGE]
+[Normal] ANNA UNIVERSITY : CHENNAI 600 025
+[Normal] [MONTH & YEAR]
+[Normal] ANNA UNIVERSITY : CHENNAI 600 025
+[Normal] BONAFIDE CERTIFICATE
+[Normal] Certified that this project report “DISASTER VOLUNTEERING NETWORK: A WEB-BASED PLATFORM FOR COORDINATING VOLUNTEERS, NGOs AND DISASTER-RELIEF TASKS” is the bonafide work of “[NAME OF THE CANDIDATE(S)]” who carried out the project work under my supervision.
+[Normal] ABSTRACT
+[Normal] During disaster relief, volunteers and relief organisations need a clear way to publish tasks, discover opportunities and record completed work. This project presents the Disaster Volunteering Network (DVN), a full-stack web platform with interfaces for volunteers, non-governmental organisations (NGOs) and administrators. NGOs can publish relief tasks with skills, location, schedule and capacity. Volunteers can filter tasks and apply; NGOs can review applications and verify submitted proof of work. The application includes volunteer-hour and point tracking, badge functionality, administrative statistics, logs and emergency broadcasts. The system uses Node.js, Express.js, MongoDB with Mongoose and browser-based interfaces, including AngularJS for the NGO portal. JWT generation is implemented, but token protection is incomplete across API routes; this and other prototype limitations are discussed in the report. A GitHub Actions workflow checks server syntax and can trigger deployment to Render when configured.
+[Normal] Keywords: disaster management, volunteer coordination, NGO, REST API, Node.js, MongoDB, AngularJS, JWT, CI/CD.
+[Normal] TABLE OF CONTENTS
+[Normal] CHAPTER NO.	TITLE	PAGE NO.
+[Normal] 	ABSTRACT	iii
+[Normal] 	LIST OF TABLES	v
+[Normal] 	LIST OF FIGURES	v
+[Normal] 	LIST OF ABBREVIATIONS	vi
+[Normal] 1.	INTRODUCTION	1
+[Normal] 1.1	GENERAL	1
+[Normal] 1.2	PROBLEM STATEMENT	1
+[Normal] 1.3	OBJECTIVES	1
+[Normal] 1.4	SCOPE AND ORGANISATION	2
+[Normal] 2.	LITERATURE REVIEW	2
+[Normal] 2.1	ICT AND VOLUNTEERS IN DISASTERS	2
+[Normal] 2.2	TECHNOLOGIES USED	3
+[Normal] 2.3	RESEARCH GAP	3
+[Normal] 3.	SYSTEM ANALYSIS	4
+[Normal] 3.1	EXISTING AND PROPOSED SYSTEM	4
+[Normal] 3.2	REQUIREMENTS	4
+[Normal] 3.3	HARDWARE AND SOFTWARE	5
+[Normal] 4.	SYSTEM DESIGN	5
+[Normal] 4.1	SYSTEM ARCHITECTURE	5
+[Normal] 4.2	USE CASE MODEL	6
+[Normal] 4.3	WORKFLOW	6
+[Normal] 4.4	DATA FLOW	7
+[Normal] 4.5	DATABASE DESIGN	8
+[Normal] 4.6	API AND SECURITY DESIGN	9
+[Normal] 5.	IMPLEMENTATION AND TESTING	10
+[Normal] 5.1	IMPLEMENTATION	10
+[Normal] 5.2	CI/CD PIPELINE	11
+[Normal] 5.3	TESTING	11
+[Normal] 6.	RESULTS AND CONCLUSION	12
+[Normal] 6.1	RESULTS	12
+[Normal] 6.2	CONCLUSION AND LIMITATIONS	12
+[Normal] 6.3	FUTURE ENHANCEMENTS	13
+[Normal] 	APPENDIX 1 – INSTALLATION AND EXECUTION STEPS – DISASTER VOLUNTEERING NETWORK	13
+[Normal] 	REFERENCES	14
+[Normal] LIST OF TABLES
+[Normal] TABLE NO.	TITLE	PAGE NO.
+[Normal] 2.1	Comparison of existing approaches with DVN	3
+[Normal] 3.1	Hardware and software requirements	5
+[Normal] 4.1	Main collections and their fields	8
+[Normal] 4.2	Principal REST endpoints	9
+[Normal] 5.1	Principal test cases and expected results	11
+[Normal] 6.1	Screens delivered by role	12
+[Normal] 6.2	Objectives and outcome	12
+[Normal] LIST OF FIGURES
+[Normal] FIGURE NO.	TITLE	PAGE NO.
+[Normal] 4.1	Three-tier architecture of DVN	6
+[Normal] 4.2	Use case diagram	6
+[Normal] 4.3	Workflow from registration to badge generation	7
+[Normal] 4.4	Level 0 data flow diagram	8
+[Normal] 4.5	Entity relationship diagram	8
+[Normal] LIST OF ABBREVIATIONS
+[Normal] API	Application Programming Interface
+[Normal] CI/CD	Continuous Integration / Deployment
+[Normal] CORS	Cross-Origin Resource Sharing
+[Normal] DVN	Disaster Volunteering Network
+[Normal] ER	Entity Relationship
+[Normal] ICT	Information and Communication Technology
+[Normal] JSON	JavaScript Object Notation
+[Normal] JWT	JSON Web Token
+[Normal] NGO	Non-Governmental Organisation
+[Normal] ODM	Object Document Mapper
+[Normal] REST	Representational State Transfer
+[Normal] SPA	Single-Page Application
+[Heading 1] CHAPTER 1
+INTRODUCTION
+[Heading 2] 1.1  GENERAL
+[Normal] Disasters such as floods, cyclones and earthquakes create an immediate need for trained manpower, medical aid and logistics. Government agencies cannot meet this demand alone, and NGOs and citizen volunteers carry a large share of the response. The Sendai Framework (UNDRR, 2015) explicitly recognises their role. The Disaster Volunteering Network (DVN) is a full-stack web platform that connects volunteers, NGOs and an administrator through role-based portals: NGOs publish tasks, volunteers apply, NGOs approve and verify the work done, and verified work is converted into hours, points and a badge.
+[Heading 2] 1.2  PROBLEM STATEMENT
+[Normal] Coordination between volunteers and NGOs is largely informal. There is no single place to publish and discover tasks, skills are not matched to needs, capacity is not controlled, attendance and hours cannot be verified, volunteers receive no verifiable record, and administrators have no visibility of platform activity.
+[Heading 2] 1.3  OBJECTIVES
+[List Paragraph] To provide secure registration and login for volunteers, NGOs and administrators, with administrator verification of NGOs.
+[List Paragraph] To let NGOs create and manage tasks, and volunteers filter tasks by skill and apply without duplicates or over-subscription.
+[List Paragraph] To provide approval, check-in and proof-of-work submission, with credit of hours, points and badge only after NGO verification.
+[List Paragraph] To give administrators statistics, audit logs, user-status control and emergency broadcasts.
+[List Paragraph] To automate build verification and deployment through CI/CD.
+[Heading 2] 1.4  SCOPE AND ORGANISATION
+[Normal] The system is a browser-based prototype covering the complete volunteering lifecycle for three roles. Native mobile apps, real-time push notifications and geo-location matching are left as future work. Chapter 2 reviews the literature, Chapter 3 analyses the system, Chapter 4 presents the design, Chapter 5 covers implementation and testing, and Chapter 6 gives the results and conclusion.
+[Heading 1] CHAPTER 2
+LITERATURE REVIEW
+[Heading 2] 2.1  ICT AND VOLUNTEERS IN DISASTERS
+[Normal] Haddow, Bullock and Coppola (2017) describe emergency management as a cycle of mitigation, preparedness, response and recovery in which coordination decides the quality of response. Palen and Liu (2007) argue that crisis management must plan for ICT-supported public participation. Whittaker, McLennan and Handmer (2015) find that spontaneous volunteers add capacity and local knowledge but pose problems of coordination, training and accountability, and that registration, skill-based role matching and recognition are key. Existing channels such as messaging groups offer no verification, capacity control or record keeping; generic volunteer tools lack the emergency context.
+[Normal] Table 2.1  Comparison of existing approaches with DVN
+[Heading 2] 2.2  TECHNOLOGIES USED
+[Normal] Node.js uses an event-driven, non-blocking I/O model (Tilkov and Vinoski, 2010), and Express.js provides routing and middleware. REST (Fielding, 2000) is an architectural style for exposing resources through HTTP. MongoDB stores document-oriented data (Chodorow, 2013; Banker et al., 2016), and Mongoose provides schemas and validation. JSON Web Tokens (Jones et al., 2015) can support stateless authentication when tokens are validated consistently on protected server routes. AngularJS (Green and Seshadri, 2013) is used for the NGO portal.
+[Heading 2] 2.3  RESEARCH GAP
+[Normal] Volunteers are valuable but poorly coordinated. The gap addressed here is a lightweight platform that combines NGO verification, skill-based discovery, an approval and check-in workflow, proof-based verification of hours and administrative monitoring on a common JavaScript stack.
+[Heading 1] CHAPTER 3
+SYSTEM ANALYSIS
+[Heading 2] 3.1  EXISTING AND PROPOSED SYSTEM
+[Normal] At present, tasks are announced by calls and messaging groups, attendance is on paper or absent, and hours are self-reported. The proposed DVN replaces this with three portals over one REST API and database: the volunteer portal (profile, skills, task filter, application, check-in, proof, history, reminders, badge), the NGO portal (dashboard, task management, request approval, proof verification, volunteer list) and the administrator portal (statistics, user verification and suspension, audit logs, emergency broadcast, highlights).
+[Heading 2] 3.2  REQUIREMENTS
+[Normal] Functional requirements:
+[List Paragraph] Registration and login; NGOs remain “Pending Verification” until activated by the administrator, and suspended users cannot log in.
+[List Paragraph] NGO task creation with skills, location, schedule and capacity; edit, publish, complete, cancel or delete.
+[List Paragraph] Skill-based task discovery; one application per volunteer per task; rejection when capacity is full.
+[List Paragraph] NGO approval or rejection of requests; check-in and proof (1–24 hours) only after approval, one proof per task.
+[List Paragraph] NGO proof verification crediting hours and 20 points per hour; badge after at least one approved proof.
+[List Paragraph] Administrator statistics, searchable audit log, user-status change and emergency broadcast.
+[Normal] Non-functional requirements are usability, security (token sessions, role checks, server-side validation), consistency of counts and credited hours, non-blocking performance, modularity, portability and auditability through a system log.
+[Heading 2] 3.3  HARDWARE AND SOFTWARE
+[Normal] Table 3.1  Hardware and software requirements
+[Heading 1] CHAPTER 4
+SYSTEM DESIGN
+[Heading 2] 4.1  SYSTEM ARCHITECTURE
+[Normal] DVN follows a three-tier architecture (Figure 4.1). The browser portals talk to the server only through api.js, which attaches the JWT as a bearer token, while auth.js keeps the session and enforces role redirects. The Express server applies CORS, JSON parsing (15 MB limit for image proofs) and logging, then dispatches to seven routers; it also serves the frontend files. Mongoose models store data in the MongoDB database disaster_volunteering_network.
+[Normal] Figure 4.1  Three-tier architecture of DVN
+[Heading 2] 4.2  USE CASE MODEL
+[Normal] The volunteer registers, manages the profile, applies, checks in, uploads proof and generates a badge. The NGO manages tasks, decides requests and verifies proofs. The administrator verifies users, views statistics and logs, and sends broadcasts (Figure 4.2).
+[Normal] Figure 4.2  Use case diagram
+[Heading 2] 4.3  WORKFLOW
+[Normal] A new NGO is “Pending Verification” until the administrator activates it. A verified NGO publishes a task, a volunteer applies and the NGO approves or rejects. Approval increments the volunteers assigned, within capacity. The volunteer checks in and submits proof; on NGO approval the hours are credited, 20 points per hour are awarded and the badge becomes available (Figure 4.3).
+[Normal] Figure 4.3  Workflow from registration to badge generation
+[Heading 2] 4.4  DATA FLOW
+[Normal] Figure 4.4 shows the context-level data flow: the three entities exchange data with the platform, which reads and writes the MongoDB store.
+[Normal] Figure 4.4  Level 0 data flow diagram
+[Heading 2] 4.5  DATABASE DESIGN
+[Normal] Eight collections are used. A user with the NGO role creates many tasks; a volunteer submits many requests and proofs; each task receives many requests and proofs (Figure 4.5). Table 4.1 lists the main fields.
+[Normal] Figure 4.5  Entity relationship diagram
+[Normal] Table 4.1  Main collections and their fields
+[Heading 2] 4.6  API AND SECURITY DESIGN
+[Normal] The API is organised by resource and returns JSON responses with HTTP status codes such as 400, 401, 403, 404 and 409. The application creates JWTs with an eight-hour validity period, and authentication middleware is available in the codebase; however, most API routes do not consistently apply this middleware. Therefore, the current implementation must not be described as providing complete server-side authentication or role-based authorization. Ownership and workflow checks are implemented in some routes, but route protection should be made consistent before deployment.
+[Normal] Table 4.2  Principal REST endpoints
+[Heading 1] CHAPTER 5
+IMPLEMENTATION AND TESTING
+[Heading 2] 5.1  IMPLEMENTATION
+[Normal] Backend. server.js loads environment variables, connects to MongoDB (MONGO_URI or a local default), mounts the routers under /api and exposes /api/health. Mongoose schemas enforce enumerations and limits such as proof hours of 1 to 24. At login, suspended users and unverified NGOs receive a 403 response and a JWT is returned otherwise; registrations and logins are written to the system log.
+[Normal] Volunteer module. Applying checks that the task is Published, not full and not already applied for (409 on violation). Check-in and proof submission require an Approved request, and only one proof is accepted per task. The history route marks a task Completed once proof exists. The badge “Certified Disaster Volunteer Specialist” is generated only after an approved proof, with an ID such as DVN-A1B2C3.
+[Normal] NGO and admin modules. NGOs operate only on tasks they created. Approving a request increments volunteersAssigned within capacity, and reversing it decrements the count. Approving a proof adds the hours and 20 points per hour to the volunteer, and reversal subtracts them. The NGO portal is an AngularJS single-page application with routed views, services and factories. The administrator can change user status (recorded as AUDIT entries), search the 100 latest log entries and dispatch broadcasts shown with an audio alert on the volunteer dashboard. A seed script (npm run seed) inserts demonstration users, tasks and data.
+[Heading 2] 5.2  CI/CD PIPELINE
+[Normal] A GitHub Actions workflow runs on pushes and pull requests to main. It sets up Node.js 20, installs dependencies with npm ci and checks server.js with node --check. Only on a successful push to main it calls a Render deploy hook stored as the secret RENDER_DEPLOY_HOOK, so credentials are never committed.
+[Heading 2] 5.3  TESTING
+[Normal] The CI workflow installs dependencies and checks the syntax of server.js. Table 5.1 lists functional and business-rule test scenarios with their expected results. These scenarios should be executed using the application and seeded data, and the actual outcome (Pass/Fail) should be recorded separately; the CI syntax check alone does not prove that all functional workflows pass.
+[Normal] Table 5.1  Principal test cases and expected results
+[Heading 1] CHAPTER 6
+RESULTS AND CONCLUSION
+[Heading 2] 6.1  RESULTS
+[Normal] The project repository contains a public landing page, login and registration pages, and interfaces for the three user roles. Table 6.1 summarises the intended screens and functions. Confirm each screen and workflow in a running deployment before describing it as successfully tested.
+[Normal] Table 6.1  Screens delivered by role
+[Normal] Table 6.2  Objectives and outcome
+[Heading 2] 6.2  CONCLUSION AND LIMITATIONS
+[Normal] DVN provides a prototype workflow for NGO task publishing, volunteer applications, approval, check-in, proof submission and NGO review, together with hour and point tracking, badge functionality and administrative features. The implementation has important limitations: passwords are stored without hashing; JWT checks are not consistently applied across API routes, and some routes rely on e-mail values supplied by the client; skill filtering is keyword-based and the displayed match rating is stored rather than dynamically calculated; proof images are stored in the database; and the CI workflow performs a server syntax check rather than a complete automated test suite. These limitations mean the application should not be described as production-secure.
+[Heading 2] 6.3  FUTURE ENHANCEMENTS
+[List Paragraph] Hash passwords (bcrypt), apply token checks to all routes, restrict CORS and add rate limiting.
+[List Paragraph] Compute real skill-match scores and add location-based matching.
+[List Paragraph] Real-time notifications by WebSocket, e-mail or SMS; mobile or progressive web app.
+[List Paragraph] Object storage for proof images, disaster analytics and automated unit and end-to-end tests.
+[Heading 1] APPENDIX 1
+INSTALLATION AND EXECUTION STEPS – DISASTER VOLUNTEERING NETWORK
+[List Paragraph] Install Node.js 20 and MongoDB; start MongoDB on 127.0.0.1:27017.
+[List Paragraph] Clone the repository and run npm install inside the backend directory.
+[List Paragraph] Create a .env file from .env.example with PORT, MONGO_URI and JWT_SECRET.
+[List Paragraph] Optionally load demonstration data with npm run seed.
+[List Paragraph] Start the server with node server.js and open http://localhost:5000 (on Windows, run start.bat).
+[Heading 1] REFERENCES
+[Normal] 1.	Banker, K., Bakkum, P., Verch, S., Garrett, D. and Hawkins, T. (2016) MongoDB in Action, 2nd Edn, Manning Publications, Shelter Island, NY.
+[Normal] 2.	Chodorow, K. (2013) MongoDB: The Definitive Guide, 2nd Edn, O’Reilly Media, Sebastopol, CA.
+[Normal] 3.	Fielding, R.T. (2000) ‘Architectural Styles and the Design of Network-based Software Architectures’, Doctoral Dissertation, University of California, Irvine.
+[Normal] 4.	Green, B. and Seshadri, S. (2013) AngularJS, O’Reilly Media, Sebastopol, CA.
+[Normal] 5.	Haddow, G.D., Bullock, J.A. and Coppola, D.P. (2017) Introduction to Emergency Management, 6th Edn, Butterworth-Heinemann, Oxford.
+[Normal] 6.	Jones, M., Bradley, J. and Sakimura, N. (2015) ‘JSON Web Token (JWT)’, RFC 7519, Internet Engineering Task Force.
+[Normal] 7.	Palen, L. and Liu, S.B. (2007) ‘Citizen Communications in Crisis: Anticipating a Future of ICT-Supported Public Participation’, Proc. ACM CHI, San Jose, CA, pp.727–736.
+[Normal] 8.	Tilkov, S. and Vinoski, S. (2010) ‘Node.js: Using JavaScript to Build High-Performance Network Programs’, IEEE Internet Computing, Vol.14, No.6, pp.80–83.
+[Normal] 9.	United Nations Office for Disaster Risk Reduction (2015) Sendai Framework for Disaster Risk Reduction 2015–2030, UNDRR, Geneva.
+[Normal] 10.	Whittaker, J., McLennan, B. and Handmer, J. (2015) ‘A Review of Informal Volunteerism in Emergencies and Disasters’, Int. J. Disaster Risk Reduction, Vol.13, pp.358–368.
